@@ -30,7 +30,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
           <div className="hidden md:flex items-center space-x-8">
             {[
               { label: "Home", href: "#home" },
-              { label: "Resume", href: "#resume" },
+              { label: "About", href: "#about" },
               { label: "Services", href: "#services" },
               { label: "Contact", href: "#contact" },
               {
