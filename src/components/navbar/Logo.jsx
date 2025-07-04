@@ -8,6 +8,7 @@ export const Logo = () => {
           {/* Manually added logos */}
           <img src="/src/assets/images/spring.png" alt="Spring" />
           <img src="/src/assets/images/react.png" alt="React" />
+          <img src="/src/assets/images/git.png" alt="Spring" />
           <img src="/src/assets/images/aws.png" alt="Spring" />
           <img src="/src/assets/images/node-js.png" alt="Spring" />
           <img src="/src/assets/images/docker.png" alt="Spring" />
@@ -15,6 +16,7 @@ export const Logo = () => {
           {/* Duplicate logos for seamless loop */}
           <img src="/src/assets/images/spring.png" alt="Spring" />
           <img src="/src/assets/images/react.png" alt="React" />
+          <img src="/src/assets/images/git.png" alt="Spring" />
           <img src="/src/assets/images/aws.png" alt="Spring" />
           <img src="/src/assets/images/node-js.png" alt="Spring" />
           <img src="/src/assets/images/docker.png" alt="Spring" />
