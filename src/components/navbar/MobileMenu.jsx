@@ -3,7 +3,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const menuItems = [
   { label: "Home", href: "#home" },
-  { label: "Resume", href: "#resume" },
+  { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Contact", href: "#contact" },
   { label: "Works", href: "#works", icon: <ArrowDropDownIcon /> },
