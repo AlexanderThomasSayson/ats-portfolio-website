@@ -8,6 +8,7 @@ import {
   Logo,
   Techstacks,
   Experience,
+  Resume,
 } from "./components";
 import "./index.css";
 const App = () => {
@@ -28,6 +29,8 @@ const App = () => {
         <About />
         <Techstacks />
         <Experience />
+        <Resume />
+        <Logo />
       </div>
     </>
   );

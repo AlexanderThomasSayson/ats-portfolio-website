@@ -31,7 +31,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
             {[
               { label: "Home", href: "#home" },
               { label: "About", href: "#about" },
-              { label: "Services", href: "#services" },
+              { label: "Resume", href: "#resume" },
               { label: "Contact", href: "#contact" },
               {
                 label: "Works",
