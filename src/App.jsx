@@ -7,6 +7,7 @@ import {
   About,
   Logo,
   Techstacks,
+  Experience,
 } from "./components";
 import "./index.css";
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
         <Logo />
         <About />
         <Techstacks />
+        <Experience />
       </div>
     </>
   );
