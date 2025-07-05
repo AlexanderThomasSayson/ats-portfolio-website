@@ -57,21 +57,22 @@ export const Home = () => {
           This portfolio showcases my full-stack expertise in building scalable
           backends and responsive front-end interfaces.
         </Typography>
-
-        <Button
-          variant="outlined"
-          sx={{
-            mt: 2.5,
-            color: "#fff",
-            borderColor: "#fff",
-            "&:hover": {
-              borderColor: "#ccc",
-              color: "#ccc",
-            },
-          }}
-        >
-          Show Portfolio
-        </Button>
+        <a href="#about" style={{ textDecoration: "none" }}>
+          <Button
+            variant="outlined"
+            sx={{
+              mt: 2.5,
+              color: "#fff",
+              borderColor: "#fff",
+              "&:hover": {
+                borderColor: "#ccc",
+                color: "#ccc",
+              },
+            }}
+          >
+            Show Portfolio
+          </Button>
+        </a>
       </div>
     </section>
   );
