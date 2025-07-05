@@ -6,6 +6,7 @@ import {
   Home,
   About,
   Logo,
+  Techstacks,
 } from "./components";
 import "./index.css";
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
         <Home />
         <Logo />
         <About />
+        <Techstacks />
       </div>
     </>
   );
