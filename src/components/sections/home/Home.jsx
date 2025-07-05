@@ -12,7 +12,7 @@ export const Home = () => {
       <div className="text-center z-10 px-4 flex flex-col items-center max-w-2xl">
         <Avatar
           alt="Alexander Thomas Sayson"
-          src="/src/assets/images/alexander.jpg"
+          src="/images/alexander.jpg"
           sx={{ width: 160, height: 160, mb: 4 }}
         />
 
