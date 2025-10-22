@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export const Home = () => {
   const handleScrollToPortfolio = () => {
-    const portfolioSection = document.getElementById("about");
+    const portfolioSection = document.getElementById("integration-showcase");
     if (portfolioSection) {
       portfolioSection.scrollIntoView({ behavior: "smooth" });
     }

@@ -2,6 +2,25 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 export const ProductShowcase = () => {
+  const deviceVariants = {
+    laptopLeft: {
+      hidden: { x: -200, opacity: 0, scale: 0.9 },
+      visible: { x: 0, opacity: 1, scale: 1, transition: { duration: 0.8 } },
+    },
+    phoneRight: {
+      hidden: { x: 200, opacity: 0, scale: 0.9 },
+      visible: { x: 0, opacity: 1, scale: 1, transition: { duration: 0.8 } },
+    },
+    laptopTop: {
+      hidden: { y: -200, opacity: 0, scale: 0.9 },
+      visible: { y: 0, opacity: 1, scale: 1, transition: { duration: 0.8 } },
+    },
+    tabletBottom: {
+      hidden: { y: 200, opacity: 0, scale: 0.9 },
+      visible: { y: 0, opacity: 1, scale: 1, transition: { duration: 0.8 } },
+    },
+  };
+
   const { scrollYProgress } = useScroll();
 
   const smoothProgress = useSpring(scrollYProgress, {
@@ -123,15 +142,31 @@ export const ProductShowcase = () => {
   const renderDevice = (section) => {
     const baseClasses =
       "mx-auto relative transition-transform duration-300 ease-out border-neutral-800 bg-neutral-950 shadow-[0_25px_80px_rgba(0,0,0,0.6)]";
+
+    // Determine variant based on device & order
+    let variant;
+    if (section.id === "yamaha") variant = deviceVariants.laptopLeft;
+    else if (section.id === "payment") variant = deviceVariants.phoneRight;
+    else if (section.id === "textract") variant = deviceVariants.laptopTop;
+    else if (section.id === "ecommerce") variant = deviceVariants.tabletBottom;
+
+    const commonProps = {
+      ref: section.ref,
+      onMouseMove: section.tilt.handleMouseMove,
+      onMouseLeave: section.tilt.handleMouseLeave,
+      variants: variant,
+      initial: "hidden",
+      whileInView: "visible",
+      viewport: { once: true, amount: 0.3 },
+      className: baseClasses,
+    };
+
     switch (section.size) {
       case "phone":
         return (
           <motion.div
-            ref={section.ref}
-            onMouseMove={section.tilt.handleMouseMove}
-            onMouseLeave={section.tilt.handleMouseLeave}
-            style={{ translateY, opacity, scale }}
-            className={`${baseClasses} w-[80%] max-w-[340px] aspect-[9/19] rounded-[3rem] border-[6px]`}
+            {...commonProps}
+            className={`${commonProps.className} w-[80%] max-w-[340px] aspect-[9/19] rounded-[3rem] border-[6px]`}
           >
             <div className="absolute inset-[8px] rounded-[2.6rem] overflow-hidden bg-black">
               <img
@@ -146,11 +181,8 @@ export const ProductShowcase = () => {
       case "laptop":
         return (
           <motion.div
-            ref={section.ref}
-            onMouseMove={section.tilt.handleMouseMove}
-            onMouseLeave={section.tilt.handleMouseLeave}
-            style={{ translateY, opacity, scale }}
-            className={`${baseClasses} w-[90%] max-w-[900px] aspect-[16/9] rounded-3xl border-[6px]`}
+            {...commonProps}
+            className={`${commonProps.className} w-[90%] max-w-[900px] aspect-[16/9] rounded-3xl border-[6px]`}
           >
             <div className="absolute inset-[10px] rounded-3xl overflow-hidden bg-black">
               <img
@@ -165,11 +197,8 @@ export const ProductShowcase = () => {
       case "tablet":
         return (
           <motion.div
-            ref={section.ref}
-            onMouseMove={section.tilt.handleMouseMove}
-            onMouseLeave={section.tilt.handleMouseLeave}
-            style={{ translateY, opacity, scale }}
-            className={`${baseClasses} w-[90%] max-w-[1100px] aspect-[4/3] rounded-[2.5rem] border-[8px]`}
+            {...commonProps}
+            className={`${commonProps.className} w-[90%] max-w-[1100px] aspect-[4/3] rounded-[2.5rem] border-[8px]`}
           >
             <div className="absolute inset-[10px] rounded-[2rem] overflow-hidden bg-black">
               <img
