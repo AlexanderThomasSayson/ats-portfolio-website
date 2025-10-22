@@ -1,26 +1,23 @@
+import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Link, useLocation } from "react-router-dom";
 
-const menuItems = [
-  { label: "Home", to: "/#home" },
-  { label: "About", to: "/#about" },
-  { label: "Resume", to: "/#resume" },
-  { label: "Works", to: "/#works" },
-  { label: "Contact", to: "/contact" }, // ✅ now navigates to separate page
-];
-
 export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
   const location = useLocation();
+  const [worksOpen, setWorksOpen] = useState(false);
+
+  const works = [
+    { title: "Dealer Network Development", link: "/#integration-showcase" },
+    { title: "Payment Gateway", link: "/#integration-showcase" },
+    { title: "Document Textractor", link: "/#integration-showcase" },
+    { title: "E-commerce Platform", link: "/#integration-showcase" },
+  ];
 
   const handleClick = (to) => {
     setMenuOpen(false);
-
-    // If it’s a hash link (like /#about)
     if (to.includes("#")) {
       const [path, hash] = to.split("#");
-
-      // Navigate to root if currently on another route (like /contact)
       if (location.pathname !== "/") {
         window.location.href = `/${hash ? `#${hash}` : ""}`;
       } else {
@@ -34,9 +31,17 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
     }
   };
 
+  const menuItems = [
+    { label: "Home", to: "/#home" },
+    { label: "About", to: "/#about" },
+    { label: "Resume", to: "/#resume" },
+    { label: "Works", to: "/#works", hasDropdown: true },
+    { label: "Contact", to: "/contact" },
+  ];
+
   return (
     <div
-      className={`fixed top-0 left-0 w-full bg-[rgba(10,10,10,0.9)] backdrop-blur-lg z-40 flex flex-col items-center justify-center
+      className={`fixed top-0 left-0 w-full bg-[rgba(10,10,10,0.95)] backdrop-blur-lg z-40 flex flex-col items-center justify-center
         transition-all duration-300 ease-in-out overflow-hidden
         ${
           menuOpen
@@ -57,38 +62,59 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
       </button>
 
       {/* Menu Links */}
-      <div className="flex flex-col items-center mt-12 space-y-4">
-        {menuItems.map(({ label, to, icon }) => {
-          const isContact = to === "/contact";
-          return isContact ? (
+      <div className="flex flex-col items-center mt-12 space-y-4 w-full max-w-sm">
+        {menuItems.map(({ label, to, hasDropdown }) =>
+          hasDropdown ? (
+            <div key={label} className="w-full flex flex-col items-center">
+              {/* Works Button */}
+              <button
+                onClick={() => setWorksOpen((prev) => !prev)}
+                className="text-2xl font-semibold text-white flex items-center gap-1 transition-transform duration-300"
+              >
+                {label}
+                <ArrowDropDownIcon
+                  className={`ml-1 transition-transform duration-300 ${
+                    worksOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {/* Submenu (Works Items) */}
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-in-out flex flex-col items-center ${
+                  worksOpen ? "max-h-64 opacity-100 mt-2" : "max-h-0 opacity-0"
+                }`}
+              >
+                {works.map((work) => (
+                  <button
+                    key={work.title}
+                    onClick={() => handleClick(work.link)}
+                    className="text-lg text-gray-300 hover:text-white transition-colors py-1"
+                  >
+                    {work.title}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : to === "/contact" ? (
             <Link
               key={label}
               to={to}
               onClick={() => setMenuOpen(false)}
-              className={`text-2xl font-semibold text-white flex items-center gap-1 transition-transform duration-300
-                ${
-                  menuOpen
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-5"
-                }`}
+              className="text-2xl font-semibold text-white transition-transform duration-300"
             >
-              {label} {icon}
+              {label}
             </Link>
           ) : (
             <button
               key={label}
               onClick={() => handleClick(to)}
-              className={`text-2xl font-semibold text-white flex items-center gap-1 transition-transform duration-300
-                ${
-                  menuOpen
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-5"
-                }`}
+              className="text-2xl font-semibold text-white transition-transform duration-300"
             >
-              {label} {icon}
+              {label}
             </button>
-          );
-        })}
+          )
+        )}
       </div>
     </div>
   );
