@@ -1,8 +1,11 @@
 import * as React from "react";
 import { Cards } from "../../cards/Cards";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 export const Techstacks = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.1 });
   const cards = [
     {
       title: "AWS",
@@ -97,28 +100,33 @@ export const Techstacks = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 120, damping: 12 },
+      transition: {
+        type: "tween",
+        duration: 0.3,
+        ease: "easeOut",
+      },
     },
   };
 
   return (
     <section
       id="about"
-      className="flex justify-center py-10 px-4"
+      className="flex justify-center py-8 px-4 min-h-screen"
       style={{ backgroundColor: "#1B1B1B" }}
     >
       <motion.div
-        className="flex flex-col w-full max-w-6xl"
+        ref={ref}
+        className="flex flex-col w-full max-w-6xl px-2 sm:px-4"
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        animate={isInView ? "visible" : "hidden"}
+        transition={{ staggerChildren: 0.1 }}
       >
         {/* Header */}
         <motion.div
-          className="flex flex-col items-center text-left mb-12"
+          className="flex flex-col items-center text-left mb-8"
           variants={item}
         >
-          <h2 className="text-4xl font-semibold dark:text-gray-500 text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-semibold dark:text-gray-500 text-white mb-4">
             I undertook intensive
             <span className="text-white"> bootcamp training</span> and acquired
             <span className="text-white"> certifications</span> in
@@ -128,7 +136,7 @@ export const Techstacks = () => {
         </motion.div>
 
         {/* Cards */}
-        <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {cards.map((card, index) => (
             <motion.div key={index} variants={item}>
               <Cards {...card} />
