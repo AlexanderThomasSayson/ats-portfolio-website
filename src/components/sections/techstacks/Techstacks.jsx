@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Cards } from "../../cards/Cards";
+import { motion } from "framer-motion";
 
 export const Techstacks = () => {
   const cards = [
@@ -91,31 +92,50 @@ export const Techstacks = () => {
     },
   ];
 
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 120, damping: 12 },
+    },
+  };
+
   return (
     <section
       id="about"
       className="flex justify-center py-10 px-4"
       style={{ backgroundColor: "#1B1B1B" }}
     >
-      <div className="flex flex-col w-full max-w-6xl">
-        {/* Header and Description */}
-        <div className="flex flex-col items-center text-left mb-12">
-          <h2 className="text-4xl font-semibold dark:text-gray-500 text-black mb-4">
+      <motion.div
+        className="flex flex-col w-full max-w-6xl"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        {/* Header */}
+        <motion.div
+          className="flex flex-col items-center text-left mb-12"
+          variants={item}
+        >
+          <h2 className="text-4xl font-semibold dark:text-gray-500 text-white mb-4">
             I undertook intensive
             <span className="text-white"> bootcamp training</span> and acquired
             <span className="text-white"> certifications</span> in
             <span className="text-white"> full-stack development</span>, gaining
             hands-on experience with the following technologies:
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Cards Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {/* Cards */}
+        <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {cards.map((card, index) => (
-            <Cards key={index} {...card} />
+            <motion.div key={index} variants={item}>
+              <Cards {...card} />
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

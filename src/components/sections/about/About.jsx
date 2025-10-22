@@ -1,25 +1,64 @@
+import * as React from "react";
+import { motion } from "framer-motion";
+
 export const About = () => {
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15, // Delay between child animations
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 120, damping: 12 },
+    },
+  };
+
   return (
     <section id="quotes" className="bg-white flex justify-center py-10 px-4">
-      <div className="flex flex-col w-full max-w-6xl">
+      <motion.div
+        className="flex flex-col w-full max-w-6xl"
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         {/* Header and Description */}
-        <div className="flex flex-col items-center text-center mb-12">
-          <h2 className="text-4xl font-semibold dark:text-black text-black mb-4">
+        <motion.div
+          className="flex flex-col items-center text-center mb-12"
+          variants={item}
+        >
+          <motion.h2
+            className="text-4xl font-semibold dark:text-black text-black mb-4"
+            variants={item}
+          >
             Dreams take shape in code.
-          </h2>
-          <p className="text-lg dark:text-gray-500 text-gray-800 max-w-3xl">
+          </motion.h2>
+          <motion.p
+            className="text-lg dark:text-gray-500 text-gray-800 max-w-3xl"
+            variants={item}
+          >
             I believe that every dream holds the potential to become reality. In
             software engineering, even the most complex ideas can be transformed
             into fully functional applications—crafted through logic,
             creativity, and unwavering persistence. Built brick by brick, line
             by line, every line of code brings vision to life.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Bottom Responsive Section */}
-        <div className="flex flex-col md:flex-row justify-between text-white p-4 md:p-8 rounded-xl gap-y-8 md:gap-x-8">
+        <motion.div
+          className="flex flex-col md:flex-row justify-between text-white p-4 md:p-8 rounded-xl gap-y-8 md:gap-x-8"
+          variants={container}
+        >
           {/* Card 1 */}
-          <div className="flex-1 text-center">
+          <motion.div className="flex-1 text-center" variants={item}>
             <div className="flex flex-col items-start text-left mb-6 md:mb-12">
               <h2 className="text-3xl md:text-4xl font-semibold dark:text-black text-black mb-4">
                 Creativity
@@ -31,10 +70,10 @@ export const About = () => {
                 deliver results that are both functional and impactful.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 2 */}
-          <div className="flex-1 text-center">
+          <motion.div className="flex-1 text-center" variants={item}>
             <div className="flex flex-col items-start text-left mb-6 md:mb-12">
               <h2 className="text-3xl md:text-4xl font-semibold dark:text-black text-black mb-4">
                 Adaptability
@@ -47,10 +86,10 @@ export const About = () => {
                 in software development.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 3 */}
-          <div className="flex-1 text-center">
+          <motion.div className="flex-1 text-center" variants={item}>
             <div className="flex flex-col items-start text-left mb-6 md:mb-12">
               <h2 className="text-3xl md:text-4xl font-semibold dark:text-black text-black mb-4">
                 Strategy
@@ -62,9 +101,9 @@ export const About = () => {
                 project.
               </p>
             </div>
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
