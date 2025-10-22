@@ -196,12 +196,26 @@ export const ProductShowcase = () => {
           key={section.id}
           className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 py-20 sm:px-8 md:px-12"
         >
+          {/* ✅ Show Yamaha logo only for the Dealer Network section */}
+          {section.id === "yamaha" && (
+            <motion.img
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              src="/images/yamaha.png"
+              alt="Yamaha Logo"
+              className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"
+            />
+          )}
+
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">
             {section.title}
           </h2>
+
           <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed mb-12 sm:mb-16">
             {section.description}
           </p>
+
           {renderDevice(section)}
         </div>
       ))}

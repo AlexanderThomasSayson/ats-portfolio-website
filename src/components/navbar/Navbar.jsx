@@ -1,11 +1,12 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useEffect } from "react";
+import { Link } from "react-router-dom"; // ✅ import Link
 
 export const Navbar = ({ menuOpen, setMenuOpen }) => {
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => (document.body.style.overflow = ""); // cleanup on unmount
+    return () => (document.body.style.overflow = "");
   }, [menuOpen]);
 
   return (
@@ -13,9 +14,13 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
       <div className="max-w-5xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Brand */}
-          <a href="#home" className="font-mono text-xl font-bold text-white">
+          <Link
+            to="/"
+            className="font-mono text-xl font-bold text-white"
+            onClick={() => setMenuOpen(false)}
+          >
             Alexander <span className="text-gray-500">Thomas</span> Sayson
-          </a>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
@@ -29,23 +34,24 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {[
-              { label: "Home", href: "#home" },
-              { label: "About", href: "#about" },
-              { label: "Resume", href: "#resume" },
-              { label: "Contact", href: "#contact" },
+              { label: "Home", to: "/" },
+              { label: "About", to: "/#about" }, // optional: keep internal hash scrolling
+              { label: "Resume", to: "/#resume" },
               {
                 label: "Works",
-                href: "#works",
+                to: "/#works",
                 icon: <ArrowDropDownIcon className="ml-1" />,
               },
-            ].map(({ label, href, icon }) => (
-              <a
+              { label: "Contact", to: "/contact" }, // ✅ navigate to Contact page
+            ].map(({ label, to, icon }) => (
+              <Link
                 key={label}
-                href={href}
+                to={to}
+                onClick={() => setMenuOpen(false)}
                 className="text-gray-300 hover:text-white transition-colors flex items-center"
               >
                 {label} {icon}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

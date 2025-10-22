@@ -9,3 +9,4 @@ export { Experience } from "./sections/experience/Experience.jsx";
 export { Resume } from "./sections/resume/Resume.jsx";
 export { ProductShowcase } from "./product/ProductShowcase.jsx";
 export { IntegrationDashboard } from "./product/IntegrationDashboard.jsx";
+export { Contact } from "./sections/contact/Contact.jsx";
