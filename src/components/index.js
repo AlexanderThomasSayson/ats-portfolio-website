@@ -2,8 +2,10 @@ export { Navbar } from "./navbar/Navbar";
 export { MobileMenu } from "./navbar/MobileMenu";
 export { Home } from "./sections/home/Home.jsx";
 export { About } from "./sections/about/About.jsx";
-export {Logo} from "./sections/logos/Logo.jsx"
+export { Logo } from "./sections/logos/Logo.jsx";
 export { LoadingScreen } from "./loading-screen/LoadingScreen";
-export {Techstacks} from "./sections/techstacks/Techstacks.jsx";
-export {Experience} from "./sections/experience/Experience.jsx";
-export {Resume} from "./sections/resume/Resume.jsx";
+export { Techstacks } from "./sections/techstacks/Techstacks.jsx";
+export { Experience } from "./sections/experience/Experience.jsx";
+export { Resume } from "./sections/resume/Resume.jsx";
+export { ProductShowcase } from "./product/ProductShowcase.jsx";
+export { IntegrationDashboard } from "./product/IntegrationDashboard.jsx";

@@ -9,6 +9,8 @@ import {
   Techstacks,
   Experience,
   Resume,
+  ProductShowcase,
+  IntegrationDashboard,
 } from "./components";
 import "./index.css";
 const App = () => {
@@ -28,6 +30,7 @@ const App = () => {
         <Logo />
         <About />
         <Techstacks />
+        <ProductShowcase />
         <Experience />
         <Resume />
         <Logo />
