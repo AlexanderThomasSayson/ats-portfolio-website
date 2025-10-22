@@ -51,6 +51,7 @@ export const ProductShowcase = () => {
   };
 
   const phoneTilt = useTilt();
+  const tabletTilt = useTilt();
   const laptopTilt = useTilt();
 
   return (
@@ -185,6 +186,60 @@ export const ProductShowcase = () => {
 
           {/* Reflection overlay */}
           <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+        </motion.div>
+      </div>
+
+      {/* TABLET SECTION (LANDSCAPE) */}
+      <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 pb-20">
+        <h2 className="text-5xl font-extrabold mb-4 tracking-tight bg-clip-text text-white">
+          E-commerce Fullstack
+        </h2>
+
+        <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed mb-20">
+          I engineered a{" "}
+          <span className="text-white font-semibold">
+            full-stack e-commerce platform
+          </span>{" "}
+          designed for{" "}
+          <span className="text-white font-semibold">
+            scalability, security,
+          </span>{" "}
+          and a{" "}
+          <span className="text-white font-semibold">
+            seamless user experience
+          </span>{" "}
+          across all devices.
+        </p>
+
+        <motion.div
+          ref={tabletTilt.ref}
+          onMouseMove={tabletTilt.handleMouseMove}
+          onMouseLeave={tabletTilt.handleMouseLeave}
+          style={{ translateY, opacity, scale, perspective: 1000 }}
+          className="relative w-[700px] sm:w-[900px] lg:w-[1100px] aspect-[4/3] mx-auto
+    rounded-[2.5rem] border-[10px] border-neutral-800 bg-neutral-950
+    shadow-[0_25px_80px_rgba(0,0,0,0.6)] transition-transform duration-300 ease-out"
+        >
+          {/* Tablet Screen */}
+          <div className="absolute inset-[10px] rounded-[2rem] overflow-hidden bg-black">
+            <img
+              src="/images/ats-e-commerce.png"
+              alt="Document Extraction Dashboard"
+              className="w-full h-full object-contain object-center transition-opacity duration-500"
+            />
+
+            {/* Subtle overlay for realism */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10 pointer-events-none" />
+          </div>
+
+          {/* Side Button (like iPad landscape power button) */}
+          <div className="absolute top-1/2 -right-[14px] w-[6px] h-16 bg-neutral-700 rounded-r-full shadow-inner"></div>
+
+          {/* Camera dot (optional) */}
+          <div className="absolute top-[12px] left-1/2 -translate-x-1/2 w-3 h-3 bg-neutral-700 rounded-full shadow-inner"></div>
+
+          {/* Reflection overlay */}
+          <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
         </motion.div>
       </div>
     </section>
