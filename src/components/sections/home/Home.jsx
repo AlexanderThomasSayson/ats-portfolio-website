@@ -4,6 +4,13 @@ import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 
 export const Home = () => {
+  const handleScrollToPortfolio = () => {
+    const portfolioSection = document.getElementById("about");
+    if (portfolioSection) {
+      portfolioSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="home"
@@ -57,22 +64,22 @@ export const Home = () => {
           This portfolio showcases my full-stack expertise in building scalable
           backends and responsive front-end interfaces.
         </Typography>
-        <a href="#about" style={{ textDecoration: "none" }}>
-          <Button
-            variant="outlined"
-            sx={{
-              mt: 2.5,
-              color: "#fff",
-              borderColor: "#fff",
-              "&:hover": {
-                borderColor: "#ccc",
-                color: "#ccc",
-              },
-            }}
-          >
-            Show Portfolio
-          </Button>
-        </a>
+
+        <Button
+          variant="outlined"
+          onClick={handleScrollToPortfolio}
+          sx={{
+            mt: 2.5,
+            color: "#fff",
+            borderColor: "#fff",
+            "&:hover": {
+              borderColor: "#ccc",
+              color: "#ccc",
+            },
+          }}
+        >
+          Show Portfolio
+        </Button>
       </div>
     </section>
   );
