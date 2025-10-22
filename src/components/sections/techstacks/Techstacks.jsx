@@ -39,12 +39,35 @@ export const Techstacks = () => {
       alt: "Git logo",
     },
     {
-      title: "React",
+      title: "React JS",
       description:
-        "Incorporate React in full-stack projects for building efficient front-end interfaces that communicate with RESTful and real-time APIs.",
+        "Incorporate React JS in full-stack projects for building efficient front-end interfaces that communicate with RESTful and real-time APIs.",
       image: "/images/react.png",
       alt: "React logo",
     },
+
+    {
+      title: "Next.js",
+      description:
+        "Build fast, SEO-friendly, and scalable web applications using the React-based Next.js framework with server-side rendering and API routes.",
+      image: "/images/next-white.png",
+      alt: "Next.js logo",
+    },
+    {
+      title: "React Native",
+      description:
+        "Develop cross-platform mobile applications for iOS and Android using React Native’s powerful component-based architecture and native performance.",
+      image: "/images/react-native.png",
+      alt: "React Native logo",
+    },
+    {
+      title: "Android Studio",
+      description:
+        "Create and debug native Android applications using Android Studio, the official IDE for Android development, equipped with powerful tools and emulators.",
+      image: "/images/android-studio-logo.png",
+      alt: "Android Studio logo",
+    },
+
     {
       title: "Node JS",
       description:
