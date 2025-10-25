@@ -26,6 +26,7 @@ export const Cards = ({ image, alt, title, description }) => {
             <img
               src={image}
               alt={alt}
+              draggable="false"
               style={{ height: 40, objectFit: "contain" }}
             />
           </Box>

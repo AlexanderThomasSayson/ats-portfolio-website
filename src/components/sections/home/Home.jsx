@@ -46,7 +46,16 @@ export const Home = () => {
           <Avatar
             alt="Alexander Thomas Sayson"
             src="/images/alexander.jpg"
-            sx={{ width: 160, height: 160, mb: 4 }}
+            sx={{
+              width: 160,
+              height: 160,
+              mb: 4,
+              userSelect: "none", // prevent selection
+              pointerEvents: "auto",
+              "& img": {
+                WebkitUserDrag: "none", // ✅ disables drag on the internal img
+              },
+            }}
           />
         </motion.div>
 

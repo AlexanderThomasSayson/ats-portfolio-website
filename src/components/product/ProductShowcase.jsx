@@ -172,6 +172,7 @@ export const ProductShowcase = () => {
               <img
                 src={section.image}
                 alt={section.title}
+                draggable="false"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -188,6 +189,7 @@ export const ProductShowcase = () => {
               <img
                 src={section.image}
                 alt={section.title}
+                draggable="false"
                 className="w-full h-full object-contain"
               />
             </div>
@@ -204,6 +206,7 @@ export const ProductShowcase = () => {
               <img
                 src={section.image}
                 alt={section.title}
+                draggable="false"
                 className="w-full h-full object-contain"
               />
             </div>
@@ -233,6 +236,7 @@ export const ProductShowcase = () => {
               transition={{ duration: 0.6 }}
               src="/images/yamaha.png"
               alt="Yamaha Logo"
+              draggable="false"
               className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"
             />
           )}
