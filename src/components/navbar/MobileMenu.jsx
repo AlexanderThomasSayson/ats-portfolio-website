@@ -9,6 +9,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
 
   const works = [
     { title: "Dealer Network Development", link: "/#integration-showcase" },
+    { title: "Air Event Gala", link: "/#integration-showcase" },
     { title: "Payment Gateway", link: "/#integration-showcase" },
     { title: "Document Textractor", link: "/#integration-showcase" },
     { title: "E-commerce Platform", link: "/#integration-showcase" },

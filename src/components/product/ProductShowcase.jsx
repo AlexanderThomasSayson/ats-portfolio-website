@@ -95,6 +95,24 @@ export const ProductShowcase = () => {
       size: "phone",
     },
     {
+      id: "airevent",
+      title: "Air Event Gala",
+      description: (
+        <>
+          I played a key role in developing an engaging, user-friendly{" "}
+          <span className="text-white font-semibold">
+            event creation system
+          </span>{" "}
+          that enables users to easily design, customize, and manage interactive
+          events with an intuitive drag-and-drop interface .
+        </>
+      ),
+      image: "/images/air-event-page.png",
+      ref: laptopTilt.ref,
+      tilt: laptopTilt,
+      size: "laptop",
+    },
+    {
       id: "textract",
       title: "Document and Text Extractor",
       description: (
@@ -235,6 +253,28 @@ export const ProductShowcase = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               src="/images/yamaha.png"
+              alt="Yamaha Logo"
+              draggable="false"
+              className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"
+            />
+          )}
+          {section.id === "airevent" && (
+            <motion.img
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              src="/images/air-event-logo.png"
+              alt="Yamaha Logo"
+              draggable="false"
+              className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"
+            />
+          )}
+          {section.id === "payment" && (
+            <motion.img
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              src="/images/bountiply.png"
               alt="Yamaha Logo"
               draggable="false"
               className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"
