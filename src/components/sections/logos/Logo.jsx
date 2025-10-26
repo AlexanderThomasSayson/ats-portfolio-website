@@ -6,20 +6,22 @@ export const Logo = () => {
       <div className="logo-mask">
         <div className="carousel-track">
           {/* Manually added logos */}
-          <img src="/images/spring.png" alt="Spring" draggable="false" />
-          <img src="/images/react.png" alt="React" draggable="false" />
-          <img src="/images/git.png" alt="Spring" draggable="false" />
-          <img src="/images/aws.png" alt="Spring" draggable="false" />
-          <img src="/images/node-js.png" alt="Spring" draggable="false" />
-          <img src="/images/docker.png" alt="Spring" draggable="false" />
+          <img src="/images/next-js-white.png" alt="Spring" draggable="false" />
+          <img src="/images/spring-gray.png" alt="Spring" draggable="false" />
+          <img src="/images/react-js-gray.png" alt="React" draggable="false" />
+          <img src="/images/git-gray.png" alt="Spring" draggable="false" />
+          <img src="/images/aws-gray.png" alt="Spring" draggable="false" />
+          <img src="/images/node-js-gray.png" alt="Spring" draggable="false" />
+          <img src="/images/docker-gray.png" alt="Spring" draggable="false" />
           <img src="/images/python-1.png" alt="Spring" draggable="false" />
           {/* Duplicate logos for seamless loop */}
-          <img src="/images/spring.png" alt="Spring" draggable="false" />
-          <img src="/images/react.png" alt="React" draggable="false" />
-          <img src="/images/git.png" alt="Spring" draggable="false" />
-          <img src="/images/aws.png" alt="Spring" draggable="false" />
-          <img src="/images/node-js.png" alt="Spring" draggable="false" />
-          <img src="/images/docker.png" alt="Spring" draggable="false" />
+          <img src="/images/next-js-white.png" alt="Spring" draggable="false" />
+          <img src="/images/spring-gray.png" alt="Spring" draggable="false" />
+          <img src="/images/react-js-gray.png" alt="React" draggable="false" />
+          <img src="/images/git-gray.png" alt="Spring" draggable="false" />
+          <img src="/images/aws-gray.png" alt="Spring" draggable="false" />
+          <img src="/images/node-js-gray.png" alt="Spring" draggable="false" />
+          <img src="/images/docker-gray.png" alt="Spring" draggable="false" />
           <img src="/images/python-1.png" alt="Spring" draggable="false" />
         </div>
       </div>
