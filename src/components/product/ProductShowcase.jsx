@@ -113,6 +113,21 @@ export const ProductShowcase = () => {
       size: "laptop",
     },
     {
+      id: "redyoos",
+      title: "Redyoos",
+      description: (
+        <>
+          Utilizes AI to determine the initial value of jewelry. Developed a
+          two-way communication module and integrated a PayPal payment gateway
+          to seamlessly process user orders.
+        </>
+      ),
+      image: "/images/redyoos-page.png",
+      ref: laptopTilt.ref,
+      tilt: laptopTilt,
+      size: "tablet",
+    },
+    {
       id: "textract",
       title: "Document and Text Extractor",
       description: (
@@ -275,6 +290,17 @@ export const ProductShowcase = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               src="/images/bountiply.png"
+              alt="Yamaha Logo"
+              draggable="false"
+              className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"
+            />
+          )}
+          {section.id === "redyoos" && (
+            <motion.img
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              src="/images/redyoos-logo-white.png"
               alt="Yamaha Logo"
               draggable="false"
               className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"

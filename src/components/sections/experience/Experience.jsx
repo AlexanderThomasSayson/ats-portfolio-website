@@ -236,6 +236,36 @@ export const Experience = () => {
               </Typography>
             </Box>
           </motion.div>
+          <Box></Box>
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <Box
+              sx={{
+                p: 3,
+                borderRadius: 2,
+                bgcolor: "#f9f9f9",
+                fontSize: "0.95rem",
+                color: "#333",
+                height: "100%",
+              }}
+            >
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                fontSize="20px"
+              >
+                Utilized{" "}
+                <Box component="span" sx={{ color: "black" }}>
+                  AI
+                </Box>{" "}
+                for initial jewelry valuation process.
+              </Typography>
+            </Box>
+          </motion.div>
         </div>
       </div>
     </section>
