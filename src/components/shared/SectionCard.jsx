@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useReducedMotion } from "../../hooks";
 
 export const SectionCard = ({
   title,
@@ -8,6 +9,8 @@ export const SectionCard = ({
   variant = "default",
   delay = 0,
 }) => {
+  const prefersReducedMotion = useReducedMotion();
+
   const variants = {
     default: "bg-neutral-900",
     highlight: "bg-neutral-900 border border-neutral-800",
@@ -16,15 +19,15 @@ export const SectionCard = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, delay }}
+      transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, delay: prefersReducedMotion ? 0 : delay }}
       className={`${variants[variant]} rounded-xl p-6 md:p-8`}
     >
       {title && (
         <div className="flex items-center gap-3 mb-4">
-          {icon && <span className="text-2xl">{icon}</span>}
+          {icon && <span className="text-2xl" aria-hidden="true">{icon}</span>}
           <h3 className="text-xl md:text-2xl font-bold text-white">{title}</h3>
         </div>
       )}
@@ -34,24 +37,30 @@ export const SectionCard = ({
 };
 
 export const ListCard = ({ items, delay = 0 }) => {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <motion.ul
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, delay }}
+      transition={{ duration: prefersReducedMotion ? 0.01 : 0.5, delay: prefersReducedMotion ? 0 : delay }}
       className="space-y-3"
+      role="list"
     >
       {items.map((item, index) => (
         <motion.li
           key={index}
-          initial={{ opacity: 0, x: -20 }}
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: delay + index * 0.1 }}
+          transition={{
+            duration: prefersReducedMotion ? 0.01 : 0.4,
+            delay: prefersReducedMotion ? 0 : delay + index * 0.1,
+          }}
           className="flex items-start gap-3 text-gray-300"
         >
-          <span className="text-green-400 mt-1">&#x2713;</span>
+          <span className="text-green-400 mt-1" aria-hidden="true">&#x2713;</span>
           <span>{item}</span>
         </motion.li>
       ))}

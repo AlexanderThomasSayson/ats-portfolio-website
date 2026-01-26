@@ -36,13 +36,13 @@ export const Cards = ({ image, alt, title, description }) => {
             variant="h6"
             component="div"
             align="left"
-            sx={{ color: "gray", fontWeight: "bold", mb: 1 }}
+            sx={{ color: "#e5e5e5", fontWeight: "bold", mb: 1 }}
           >
             {title}
           </Typography>
 
           {/* Description below title */}
-          <Typography variant="body2" sx={{ color: "gray", textAlign: "left" }}>
+          <Typography variant="body2" sx={{ color: "#a3a3a3", textAlign: "left" }}>
             {description}
           </Typography>
         </CardContent>

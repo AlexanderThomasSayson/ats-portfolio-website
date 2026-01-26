@@ -29,7 +29,7 @@ export const ProjectDetailPage = ({ menuOpen, setMenuOpen }) => {
             </p>
             <button
               onClick={() => navigate("/")}
-              className="px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors"
+              className="px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-black"
             >
               Go Home
             </button>
@@ -105,7 +105,7 @@ export const ProjectDetailPage = ({ menuOpen, setMenuOpen }) => {
         >
           <img
             src={project.image}
-            alt={project.title}
+            alt={`${project.title} - Application interface screenshot showing the main features`}
             className="w-full h-full object-contain"
           />
         </motion.div>
@@ -160,7 +160,7 @@ export const ProjectDetailPage = ({ menuOpen, setMenuOpen }) => {
         >
           <button
             onClick={() => navigate("/#integration-showcase")}
-            className="px-8 py-4 bg-neutral-800 hover:bg-neutral-700 text-white font-medium rounded-xl transition-colors"
+            className="px-8 py-4 bg-neutral-800 hover:bg-neutral-700 text-white font-medium rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-black"
           >
             View All Projects
           </button>

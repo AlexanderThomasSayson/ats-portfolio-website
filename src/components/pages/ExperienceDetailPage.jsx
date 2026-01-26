@@ -29,7 +29,7 @@ export const ExperienceDetailPage = ({ menuOpen, setMenuOpen }) => {
             </p>
             <button
               onClick={() => navigate("/")}
-              className="px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors"
+              className="px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-black"
             >
               Go Home
             </button>
@@ -131,7 +131,8 @@ export const ExperienceDetailPage = ({ menuOpen, setMenuOpen }) => {
             <h2 className="text-xl font-bold text-white">Related Project</h2>
             <Link
               to={`/projects/${relatedProject.slug}`}
-              className="block bg-neutral-900 hover:bg-neutral-800 rounded-xl p-6 transition-colors group"
+              className="block bg-neutral-900 hover:bg-neutral-800 rounded-xl p-6 transition-colors group focus:outline-none focus:ring-2 focus:ring-blue-400"
+              aria-label={`View related project: ${relatedProject.title}`}
             >
               <div className="flex items-center gap-6">
                 {relatedProject.logo && (
@@ -164,7 +165,7 @@ export const ExperienceDetailPage = ({ menuOpen, setMenuOpen }) => {
         >
           <button
             onClick={() => navigate("/#about")}
-            className="px-8 py-4 bg-neutral-800 hover:bg-neutral-700 text-white font-medium rounded-xl transition-colors"
+            className="px-8 py-4 bg-neutral-800 hover:bg-neutral-700 text-white font-medium rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-black"
           >
             View All Experiences
           </button>

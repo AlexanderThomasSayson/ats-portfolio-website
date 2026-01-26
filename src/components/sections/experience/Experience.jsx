@@ -4,29 +4,37 @@ import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { experiences } from "../../../data/experiences";
+import { useReducedMotion } from "../../../hooks";
 
 export const Experience = () => {
-  // Animation variants for the cards
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
+  const prefersReducedMotion = useReducedMotion();
+
+  // Animation variants for the cards with reduced motion support
+  const cardVariants = prefersReducedMotion
+    ? {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { duration: 0.01 } },
+      }
+    : {
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.6,
+            ease: "easeOut",
+          },
+        },
+      };
 
   return (
     <section id="experience" className="flex justify-center py-10 px-4 bg-white">
       <div className="flex flex-col w-full max-w-6xl">
         {/* Header and Description */}
         <div className="flex flex-col items-center text-left mb-12">
-          <h2 className="text-4xl font-semibold dark:text-gray-500 text-black mb-4">
+          <h2 className="text-4xl font-semibold text-neutral-800 mb-4">
             I've worked across diverse
-            <span className="text-black"> projects and domains</span>, solving
+            <span className="text-black font-bold"> projects and domains</span>, solving
             real-world problems and driving impact.
           </h2>
         </div>
@@ -82,7 +90,7 @@ export const Experience = () => {
                   <Typography
                     variant="caption"
                     sx={{
-                      color: "#999",
+                      color: "#525252",
                       display: "block",
                       mt: 1,
                     }}

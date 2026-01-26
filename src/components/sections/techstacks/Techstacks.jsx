@@ -2,16 +2,18 @@ import * as React from "react";
 import { Cards } from "../../cards/Cards";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useReducedMotion } from "../../../hooks";
 
 export const Techstacks = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.1 });
+  const prefersReducedMotion = useReducedMotion();
   const cards = [
     {
       title: "AWS",
       description:
         "Deploys applications and configures cloud storage using core AWS services such as EC2, RDS, S3, and Lambda.",
-      image: "/images/aws.png",
+      image: "/images/aws-logo.png",
       alt: "AWS logo",
     },
     {
@@ -95,18 +97,23 @@ export const Techstacks = () => {
     },
   ];
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "tween",
-        duration: 0.3,
-        ease: "easeOut",
-      },
-    },
-  };
+  const item = prefersReducedMotion
+    ? {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { duration: 0.01 } },
+      }
+    : {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            type: "tween",
+            duration: 0.3,
+            ease: "easeOut",
+          },
+        },
+      };
 
   return (
     <section
@@ -119,19 +126,23 @@ export const Techstacks = () => {
         className="flex flex-col w-full max-w-6xl px-2 sm:px-4"
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        transition={{ staggerChildren: 0.1 }}
+        transition={{ staggerChildren: prefersReducedMotion ? 0 : 0.1 }}
       >
         {/* Header */}
         <motion.div
           className="flex flex-col items-center text-left mb-8"
           variants={item}
         >
-          <h2 className="text-3xl sm:text-4xl font-semibold dark:text-gray-500 text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-semibold text-gray-100 mb-4">
             I undertook intensive
-            <span className="text-white"> bootcamp training</span> and acquired
-            <span className="text-white"> certifications</span> in
-            <span className="text-white"> full-stack development</span>, gaining
-            hands-on experience with the following technologies:
+            <span className="text-white font-bold"> bootcamp training</span> and
+            acquired
+            <span className="text-white font-bold"> certifications</span> in
+            <span className="text-white font-bold">
+              {" "}
+              full-stack development
+            </span>
+            , gaining hands-on experience with the following technologies:
           </h2>
         </motion.div>
 

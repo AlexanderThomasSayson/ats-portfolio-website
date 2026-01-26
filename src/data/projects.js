@@ -87,20 +87,21 @@ export const projects = [
     size: "laptop",
     technologies: [
       "React",
-      "Node.js",
-      "MongoDB",
-      "Socket.io",
+      "Java Springboot",
+      "Postgres SQL",
+      "AWS EC2",
       "AWS S3",
-      "CloudFront",
+      "GoHighLevel",
+      "Stripe"
     ],
     problem:
-      "US-based event organizers needed a platform to create and manage virtual galas and interactive events. Existing solutions were either too complex for non-technical users or lacked the customization options needed for branded corporate events.",
+      "During the pandemic, prolonged lockdowns significantly limited in-person interactions such as parties and events. As a result, US-based event organizers required a reliable platform to create and manage virtual galas and interactive events. However, existing solutions were often too complex for non-technical users or lacked the level of customization necessary for branded corporate events.",
     solution:
-      "I played a key role in developing an intuitive event creation system with drag-and-drop functionality. Users could customize every aspect of their event pages, from layouts to interactive elements like live polls, Q&A sessions, and virtual networking rooms. The platform included real-time attendee engagement tracking and post-event analytics.",
+      "I played a key role as a full-stack developer in building an intuitive event creation system supported by reliable APIs, customizable features, and drag-and-drop functionality. The platform allowed event admin to customize every aspect of their event pages, schedule meetings, and host interactive activities that closely mirrored real-world experiences—from layouts to features such as live polls, Q&A sessions, games, and virtual networking rooms. Additionally, the system provided real-time attendee engagement tracking and comprehensive post-event analytics.",
     challenges: [
+      "Designed and implemented reliable, optimized APIs to manage events, meetings, and agendas efficiently.",
       "Building a performant drag-and-drop editor that worked across all devices",
       "Implementing real-time synchronization for live event interactions",
-      "Optimizing video streaming quality while minimizing bandwidth usage",
       "Creating a white-label system that could match any brand's design guidelines",
     ],
     outcomes: [
@@ -109,10 +110,10 @@ export const projects = [
       "Reduced event setup time by 70% compared to custom development",
       "Supported concurrent viewership of up to 10,000 attendees per event",
     ],
-    screenshots: ["/images/air-event-page.png"],
-    role: "Frontend Developer",
-    duration: "8 months",
-    team: "6 developers",
+    screenshots: ["/images/airevent/ae_login.png","/images/airevent/ae_dashboard.png","/images/airevent/ae_event_agenda.png","/images/airevent/ae_meeting.png","/images/air-event-page.png"],
+    role: "Fullstack Developer",
+    duration: "5 months",
+    team: "7 developers",
   },
   {
     id: "redyoos",

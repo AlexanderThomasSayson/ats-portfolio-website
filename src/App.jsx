@@ -17,18 +17,33 @@ import { ScrollToHashElement } from "./components/scroll/ScrollToHashElement";
 import { ProjectDetailPage } from "./components/pages/ProjectDetailPage";
 import { ExperienceDetailPage } from "./components/pages/ExperienceDetailPage";
 
+// Skip link component for keyboard accessibility
+const SkipLink = () => (
+  <a
+    href="#main-content"
+    className="skip-link"
+  >
+    Skip to main content
+  </a>
+);
+
 const MainPage = ({ menuOpen, setMenuOpen }) => (
   <div className="min-h-screen bg-black text-gray-100">
-    <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-    <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-    <Home />
-    <Logo />
-    <About />
-    <Techstacks />
-    <ProductShowcase />
-    <Experience />
-    <Resume />
-    <Logo />
+    <SkipLink />
+    <header>
+      <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+    </header>
+    <main id="main-content">
+      <Home />
+      <Logo />
+      <About />
+      <Techstacks />
+      <ProductShowcase />
+      <Experience />
+      <Resume />
+      <Logo />
+    </main>
   </div>
 );
 
@@ -46,11 +61,16 @@ const App = () => {
         <Route
           path="/contact"
           element={
-            <>
-              <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-              <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-              <Contact />
-            </>
+            <div className="min-h-screen bg-black text-gray-100">
+              <SkipLink />
+              <header>
+                <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+                <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+              </header>
+              <main id="main-content">
+                <Contact />
+              </main>
+            </div>
           }
         />
         <Route
