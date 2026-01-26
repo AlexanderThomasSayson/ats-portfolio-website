@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { Link } from "react-router-dom";
+import { projects } from "../../data/projects";
 
 export const ProductShowcase = () => {
   const deviceVariants = {
@@ -58,119 +60,108 @@ export const ProductShowcase = () => {
   const tabletTilt = useTilt();
   const laptopTilt = useTilt();
 
-  const sections = [
-    {
-      id: "yamaha",
-      title: "Dealer Network Development",
-      description: (
-        <>
-          I contributed to the development of a centralized{" "}
-          <span className="text-white font-semibold">
-            ticketing and support platform
-          </span>{" "}
-          for{" "}
-          <span className="text-red-500 font-semibold">Yamaha Philippines</span>
-          , enhancing communication efficiency and streamlining issue tracking
-          across its nationwide dealer network.
-        </>
-      ),
-      image: "/images/DND.png",
-      ref: laptopTilt.ref,
-      tilt: laptopTilt,
-      size: "laptop",
-    },
-    {
-      id: "payment",
-      title: "Payment Gateway",
-      description: (
-        <>
-          Engineered a flexible and scalable backend{" "}
-          <span className="text-white font-semibold">payment gateway</span> for
-          seamless transactions — send payouts via PayPal, Tremendous, and more.
-        </>
-      ),
-      image: "/images/payment.png",
-      ref: phoneTilt.ref,
-      tilt: phoneTilt,
-      size: "phone",
-    },
-    {
-      id: "airevent",
-      title: "Air Event Gala",
-      description: (
-        <>
-          I played a key role in developing an engaging, user-friendly{" "}
-          <span className="text-white font-semibold">
-            event creation system
-          </span>{" "}
-          that enables users to easily design, customize, and manage interactive
-          events with an intuitive drag-and-drop interface .
-        </>
-      ),
-      image: "/images/air-event-page.png",
-      ref: laptopTilt.ref,
-      tilt: laptopTilt,
-      size: "laptop",
-    },
-    {
-      id: "redyoos",
-      title: "Redyoos",
-      description: (
-        <>
-          Utilizes AI to determine the initial value of jewelry. Developed a
-          two-way communication module and integrated a PayPal payment gateway
-          to seamlessly process user orders.
-        </>
-      ),
-      image: "/images/redyoos-page.png",
-      ref: laptopTilt.ref,
-      tilt: laptopTilt,
-      size: "tablet",
-    },
-    {
-      id: "textract",
-      title: "Document and Text Extractor",
-      description: (
-        <>
-          I created a{" "}
-          <span className="text-white font-semibold">
-            text extraction system
-          </span>{" "}
-          engineered to automate text detection around receipts and documents
-          using OCR.
-        </>
-      ),
-      image: "/images/textract-v2.png",
-      ref: laptopTilt.ref,
-      tilt: laptopTilt,
-      size: "laptop",
-    },
-    {
-      id: "ecommerce",
-      title: "E-commerce Fullstack",
-      description: (
-        <>
-          I engineered a{" "}
-          <span className="text-white font-semibold">
-            full-stack e-commerce platform
-          </span>{" "}
-          designed for{" "}
-          <span className="text-white font-semibold">
-            scalability, security
-          </span>
-          , and a{" "}
-          <span className="text-white font-semibold">
-            seamless user experience
-          </span>{" "}
-          across all devices.
-        </>
-      ),
-      image: "/images/ats-e-commerce.png",
-      ref: tabletTilt.ref,
-      tilt: tabletTilt,
-      size: "tablet",
-    },
-  ];
+  // Map projects data with tilt handlers and enhanced descriptions
+  const getTilt = (size) => {
+    switch (size) {
+      case "phone":
+        return phoneTilt;
+      case "tablet":
+        return tabletTilt;
+      default:
+        return laptopTilt;
+    }
+  };
+
+  const getDescription = (id) => {
+    switch (id) {
+      case "yamaha":
+        return (
+          <>
+            I contributed to the development of a centralized{" "}
+            <span className="text-white font-semibold">
+              ticketing and support platform
+            </span>{" "}
+            for{" "}
+            <span className="text-red-500 font-semibold">Yamaha Philippines</span>
+            , enhancing communication efficiency and streamlining issue tracking
+            across its nationwide dealer network.
+          </>
+        );
+      case "payment":
+        return (
+          <>
+            Engineered a flexible and scalable backend{" "}
+            <span className="text-white font-semibold">payment gateway</span> for
+            seamless transactions — send payouts via PayPal, Tremendous, and more.
+          </>
+        );
+      case "airevent":
+        return (
+          <>
+            I played a key role in developing an engaging, user-friendly{" "}
+            <span className="text-white font-semibold">
+              event creation system
+            </span>{" "}
+            that enables users to easily design, customize, and manage interactive
+            events with an intuitive drag-and-drop interface.
+          </>
+        );
+      case "redyoos":
+        return (
+          <>
+            Utilizes AI to determine the initial value of jewelry. Developed a
+            two-way communication module and integrated a PayPal payment gateway
+            to seamlessly process user orders.
+          </>
+        );
+      case "textract":
+        return (
+          <>
+            I created a{" "}
+            <span className="text-white font-semibold">
+              text extraction system
+            </span>{" "}
+            engineered to automate text detection around receipts and documents
+            using OCR.
+          </>
+        );
+      case "ecommerce":
+        return (
+          <>
+            I engineered a{" "}
+            <span className="text-white font-semibold">
+              full-stack e-commerce platform
+            </span>{" "}
+            designed for{" "}
+            <span className="text-white font-semibold">
+              scalability, security
+            </span>
+            , and a{" "}
+            <span className="text-white font-semibold">
+              seamless user experience
+            </span>{" "}
+            across all devices.
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const sections = projects.map((project) => {
+    const tilt = getTilt(project.size);
+    return {
+      id: project.id,
+      slug: project.slug,
+      title: project.title,
+      description: getDescription(project.id),
+      image: project.image,
+      logo: project.logo,
+      ref: tilt.ref,
+      tilt: tilt,
+      size: project.size,
+    };
+  });
 
   const renderDevice = (section) => {
     const baseClasses =
@@ -261,47 +252,14 @@ export const ProductShowcase = () => {
           key={section.id}
           className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 py-20 sm:px-8 md:px-12"
         >
-          {/* ✅ Show Yamaha logo only for the Dealer Network section */}
-          {section.id === "yamaha" && (
+          {/* Logo */}
+          {section.logo && (
             <motion.img
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              src="/images/yamaha.png"
-              alt="Yamaha Logo"
-              draggable="false"
-              className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"
-            />
-          )}
-          {section.id === "airevent" && (
-            <motion.img
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              src="/images/air-event-logo.png"
-              alt="Yamaha Logo"
-              draggable="false"
-              className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"
-            />
-          )}
-          {section.id === "payment" && (
-            <motion.img
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              src="/images/bountiply.png"
-              alt="Yamaha Logo"
-              draggable="false"
-              className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"
-            />
-          )}
-          {section.id === "redyoos" && (
-            <motion.img
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              src="/images/redyoos-logo-white.png"
-              alt="Yamaha Logo"
+              src={section.logo}
+              alt={`${section.title} Logo`}
               draggable="false"
               className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"
             />
@@ -311,9 +269,17 @@ export const ProductShowcase = () => {
             {section.title}
           </h2>
 
-          <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed mb-12 sm:mb-16">
+          <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed mb-8">
             {section.description}
           </p>
+
+          {/* View Details Link */}
+          <Link
+            to={`/projects/${section.slug}`}
+            className="mb-12 sm:mb-16 px-6 py-3 bg-neutral-800 hover:bg-neutral-700 text-white text-sm font-medium rounded-lg transition-colors"
+          >
+            View Case Study &rarr;
+          </Link>
 
           {renderDevice(section)}
         </div>

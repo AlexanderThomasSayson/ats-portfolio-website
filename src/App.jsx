@@ -14,6 +14,8 @@ import {
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ScrollToHashElement } from "./components/scroll/ScrollToHashElement";
+import { ProjectDetailPage } from "./components/pages/ProjectDetailPage";
+import { ExperienceDetailPage } from "./components/pages/ExperienceDetailPage";
 
 const MainPage = ({ menuOpen, setMenuOpen }) => (
   <div className="min-h-screen bg-black text-gray-100">
@@ -49,6 +51,21 @@ const App = () => {
               <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
               <Contact />
             </>
+          }
+        />
+        <Route
+          path="/projects/:slug"
+          element={
+            <ProjectDetailPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+          }
+        />
+        <Route
+          path="/experiences/:slug"
+          element={
+            <ExperienceDetailPage
+              menuOpen={menuOpen}
+              setMenuOpen={setMenuOpen}
+            />
           }
         />
       </Routes>

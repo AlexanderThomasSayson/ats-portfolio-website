@@ -25,11 +25,12 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
   }, []);
 
   const works = [
-    { title: "Yamaha DND", link: "/#integration-showcase" },
-    { title: "Air Event Gala", link: "/#integration-showcase" },
-    { title: "Payment Gateway", link: "/#integration-showcase" },
-    { title: "Document Textractor", link: "/#integration-showcase" },
-    { title: "E-commerce Platform", link: "/#integration-showcase" },
+    { title: "Yamaha DND", link: "/projects/yamaha" },
+    { title: "Air Event Gala", link: "/projects/airevent" },
+    { title: "Payment Gateway", link: "/projects/payment" },
+    { title: "Document Textractor", link: "/projects/textract" },
+    { title: "E-commerce Platform", link: "/projects/ecommerce" },
+    { title: "Redyoos", link: "/projects/redyoos" },
   ];
 
   return (

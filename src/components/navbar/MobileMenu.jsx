@@ -8,11 +8,12 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
   const [worksOpen, setWorksOpen] = useState(false);
 
   const works = [
-    { title: "Dealer Network Development", link: "/#integration-showcase" },
-    { title: "Air Event Gala", link: "/#integration-showcase" },
-    { title: "Payment Gateway", link: "/#integration-showcase" },
-    { title: "Document Textractor", link: "/#integration-showcase" },
-    { title: "E-commerce Platform", link: "/#integration-showcase" },
+    { title: "Yamaha DND", link: "/projects/yamaha" },
+    { title: "Air Event Gala", link: "/projects/airevent" },
+    { title: "Payment Gateway", link: "/projects/payment" },
+    { title: "Document Textractor", link: "/projects/textract" },
+    { title: "E-commerce Platform", link: "/projects/ecommerce" },
+    { title: "Redyoos", link: "/projects/redyoos" },
   ];
 
   const handleClick = (to) => {
@@ -83,17 +84,18 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
               {/* Submenu (Works Items) */}
               <div
                 className={`overflow-hidden transition-all duration-300 ease-in-out flex flex-col items-center ${
-                  worksOpen ? "max-h-64 opacity-100 mt-2" : "max-h-0 opacity-0"
+                  worksOpen ? "max-h-80 opacity-100 mt-2" : "max-h-0 opacity-0"
                 }`}
               >
                 {works.map((work) => (
-                  <button
+                  <Link
                     key={work.title}
-                    onClick={() => handleClick(work.link)}
+                    to={work.link}
+                    onClick={() => setMenuOpen(false)}
                     className="text-lg text-gray-300 hover:text-white transition-colors py-1"
                   >
                     {work.title}
-                  </button>
+                  </Link>
                 ))}
               </div>
             </div>
