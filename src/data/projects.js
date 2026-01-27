@@ -194,24 +194,23 @@ export const projects = [
   {
     id: "ecommerce",
     slug: "ecommerce",
-    title: "E-commerce Fullstack",
+    title: "Raya Trading Inventory System",
     shortDescription:
-      "A full-stack e-commerce platform designed for scalability, security, and seamless user experience across all devices.",
-    image: "/images/ats-e-commerce.png",
+      "A full-stack inventory platform designed for scalability, security, and seamless user experience across all devices.",
+    image: "/images/mtx/mtx_dashboard.png",
     logo: null,
     size: "tablet",
     technologies: [
-      "Next.js",
-      "Node.js",
-      "PostgreSQL",
-      "Stripe",
-      "Redis",
-      "Tailwind CSS",
+      "Vanilla PHP",
+      "AdminLTE",
+      "MySQL",
+      "Bootstrap CSS",
+      "Hostinger"
     ],
     problem:
-      "Small to medium businesses needed an affordable, customizable e-commerce solution that didn't require extensive technical knowledge to manage. Existing platforms were either too expensive, too limited in customization, or required significant development effort to deploy.",
+      "The client required an affordable and customizable inventory management solution. However, existing platforms were either cost-prohibitive, lacked sufficient customization options, or required significant development effort to implement.",
     solution:
-      "I engineered a complete e-commerce platform featuring product management, shopping cart functionality, secure checkout with Stripe integration, and an intuitive admin dashboard. The platform was built with SEO optimization, responsive design, and performance as core priorities. It included inventory management, order tracking, and customer analytics.",
+      "I engineered a comprehensive inventory platform that streamlined product management, enabled secure e-wallet and multi–mode payment processing, and provided an intuitive administrative dashboard. By prioritizing SEO optimization, responsive design, and performance, the platform improved online visibility, user experience, and transaction efficiency. Core features such as real-time inventory management, order tracking, and customer analytics helped the client reduce manual operations, gain actionable business insights, and scale their operations cost-effectively.",
     challenges: [
       "Implementing secure payment processing with proper error handling",
       "Building a performant product search with filtering and pagination",
@@ -224,9 +223,9 @@ export const projects = [
       "Reduced checkout abandonment by 30% through UX improvements",
       "Enabled deployment in under 1 hour with customizable templates",
     ],
-    screenshots: ["/images/ats-e-commerce.png"],
+    screenshots: ["/images/mtx/mtx_login.png","/images/mtx/mtx_dashboard.png","/images/mtx/mtx_inventory.png","/images/mtx/mtx_product_overview.png","/images/mtx/mtx_purchase.png","/images/mtx/mtx_reports.png"],
     role: "Full Stack Developer",
-    duration: "Personal Project",
+    duration: "Freelanced Project",
     team: "Solo",
   },
 ];
