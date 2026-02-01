@@ -40,23 +40,29 @@ export const projects = [
   {
     id: "payment",
     slug: "payment",
-    title: "Payment Gateway",
+    title: "Loyalty Point System",
     shortDescription:
-      "A flexible and scalable backend payment gateway for seamless transactions via PayPal, Tremendous, and other providers.",
-    image: "/images/payment.png",
+      "A modular microservices platform with integrated payments and rewards, supporting user, voucher, coupon, cart, points, and notification services—powered by a flexible disbursement gateway for PayPal, Tremendous, and other providers, with voucher redemption and two-way communication.",
+    image: "/images/bountiply/bountiply_dashboard.png",
     logo: "/images/bountiply.png",
-    size: "phone",
+    size: "laptop",
     technologies: [
-      "Node.js",
-      "Express",
+      "SpringBoot Java",
+      "MySQL",
       "PostgreSQL",
+      "UnionBank API",
+      "PisoPay API",
       "PayPal API",
       "Tremendous API",
-      "Redis",
       "Docker",
+      "AWS EC2",
+      "AWS ECR",
+      "AWS ECS",
+      "Spring Gateway",
+      "CI/CD"
     ],
     problem:
-      "The rewards platform needed a unified payment system that could handle multiple payout methods while maintaining compliance with financial regulations. Users expected instant payouts, but the existing manual process was slow, error-prone, and couldn't scale with the growing user base.",
+      "The rewards platform lacked a unified and scalable payment infrastructure capable of supporting multiple payout providers while remaining compliant with financial and regulatory requirements. Users expected fast and reliable payouts, but the existing process relied heavily on manual handling, leading to delays, operational errors, and limited visibility into transaction statuses. As the user base grew, the system struggled to scale, increasing the risk of payout failures and negatively impacting user trust and overall platform efficiency.",
     solution:
       "I engineered a microservices-based payment gateway that abstracted multiple payment providers behind a unified API. The system supported PayPal, Tremendous gift cards, and direct bank transfers. It included comprehensive transaction logging, automated retry logic for failed payments, and a reconciliation system to ensure accuracy.",
     challenges: [
@@ -66,15 +72,15 @@ export const projects = [
       "Ensuring PCI compliance while maintaining developer experience",
     ],
     outcomes: [
-      "Processed over $2M in reward payouts within the first year",
+      "Processed over ₱2M in reward payouts within the first year",
       "Achieved 99.9% payment success rate with automated retry logic",
       "Reduced payout processing time from 24 hours to under 5 minutes",
       "Supported 3 payment providers with a single unified API",
     ],
-    screenshots: ["/images/payment.png"],
-    role: "Backend Developer",
-    duration: "4 months",
-    team: "3 developers",
+    screenshots: ["/images/bountiply/bountiply_loginv2.png","/images/bountiply/bountiply_dashboard.png","/images/bountiply/bountiply_user.png","/images/bountiply/bountiply_fund.png","/images/bountiply/bountiply_voucher.png","/images/bountiply/bountiply_encoding.png"],
+    role: "Senior Backend Developer",
+    duration: "1 Year and 5 months",
+    team: "5 developers",
   },
   {
     id: "airevent",

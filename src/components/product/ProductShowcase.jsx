@@ -19,25 +19,45 @@ export const ProductShowcase = () => {
       ? reducedMotionVariant
       : {
           hidden: { x: -200, opacity: 0, scale: 0.9 },
-          visible: { x: 0, opacity: 1, scale: 1, transition: { duration: 0.8 } },
+          visible: {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            transition: { duration: 0.8 },
+          },
         },
     phoneRight: prefersReducedMotion
       ? reducedMotionVariant
       : {
           hidden: { x: 200, opacity: 0, scale: 0.9 },
-          visible: { x: 0, opacity: 1, scale: 1, transition: { duration: 0.8 } },
+          visible: {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            transition: { duration: 0.8 },
+          },
         },
     laptopTop: prefersReducedMotion
       ? reducedMotionVariant
       : {
           hidden: { y: -200, opacity: 0, scale: 0.9 },
-          visible: { y: 0, opacity: 1, scale: 1, transition: { duration: 0.8 } },
+          visible: {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            transition: { duration: 0.8 },
+          },
         },
     tabletBottom: prefersReducedMotion
       ? reducedMotionVariant
       : {
           hidden: { y: 200, opacity: 0, scale: 0.9 },
-          visible: { y: 0, opacity: 1, scale: 1, transition: { duration: 0.8 } },
+          visible: {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            transition: { duration: 0.8 },
+          },
         },
   };
 
@@ -104,7 +124,9 @@ export const ProductShowcase = () => {
               ticketing and support platform
             </span>{" "}
             for{" "}
-            <span className="text-red-500 font-semibold">Yamaha Philippines</span>
+            <span className="text-red-500 font-semibold">
+              Yamaha Philippines
+            </span>
             , enhancing communication efficiency and streamlining issue tracking
             across its nationwide dealer network.
           </>
@@ -113,8 +135,10 @@ export const ProductShowcase = () => {
         return (
           <>
             Engineered a flexible and scalable backend{" "}
-            <span className="text-white font-semibold">payment gateway</span> for
-            seamless transactions — send payouts via PayPal, Tremendous, and more.
+            <span className="text-white font-semibold">payment gateway </span>
+            enabling seamless disbursement via PayPal, Tremendous, and other
+            providers, with support for voucher redemption and two-way
+            communication.
           </>
         );
       case "airevent":
@@ -124,8 +148,8 @@ export const ProductShowcase = () => {
             <span className="text-white font-semibold">
               event creation system
             </span>{" "}
-            that enables users to easily design, customize, and manage interactive
-            events with an intuitive drag-and-drop interface.
+            that enables users to easily design, customize, and manage
+            interactive events with an intuitive drag-and-drop interface.
           </>
         );
       case "redyoos":
@@ -225,7 +249,10 @@ export const ProductShowcase = () => {
               />
             </div>
             {/* Phone notch - decorative */}
-            <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-2 bg-gray-700 rounded-full" aria-hidden="true" />
+            <div
+              className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-2 bg-gray-700 rounded-full"
+              aria-hidden="true"
+            />
           </motion.div>
         );
       case "laptop":
@@ -245,7 +272,10 @@ export const ProductShowcase = () => {
               />
             </div>
             {/* Laptop base - decorative */}
-            <div className="absolute bottom-[-20px] left-1/2 -translate-x-1/2 w-[130%] h-6 rounded-b-3xl bg-gradient-to-b from-gray-800 to-black" aria-hidden="true" />
+            <div
+              className="absolute bottom-[-20px] left-1/2 -translate-x-1/2 w-[130%] h-6 rounded-b-3xl bg-gradient-to-b from-gray-800 to-black"
+              aria-hidden="true"
+            />
           </motion.div>
         );
       case "tablet":
@@ -265,7 +295,10 @@ export const ProductShowcase = () => {
               />
             </div>
             {/* Tablet camera - decorative */}
-            <div className="absolute top-[12px] left-1/2 -translate-x-1/2 w-3 h-3 bg-neutral-700 rounded-full" aria-hidden="true" />
+            <div
+              className="absolute top-[12px] left-1/2 -translate-x-1/2 w-3 h-3 bg-neutral-700 rounded-full"
+              aria-hidden="true"
+            />
           </motion.div>
         );
       default:
@@ -286,7 +319,9 @@ export const ProductShowcase = () => {
           {/* Logo */}
           {section.logo && (
             <motion.img
-              initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
+              initial={
+                prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }
+              }
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: prefersReducedMotion ? 0.01 : 0.6 }}
               src={section.logo}
