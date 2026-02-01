@@ -182,7 +182,7 @@ export const experiences = [
       "Developed custom preprocessing algorithms that improved OCR accuracy by 20%",
       "Built a feedback loop that continuously improved extraction accuracy",
     ],
-    relatedProject: "textract",
+    relatedProject: "financeflow",
   },
   {
     id: "event-system",

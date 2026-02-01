@@ -160,15 +160,12 @@ export const ProductShowcase = () => {
             to seamlessly process user orders.
           </>
         );
-      case "textract":
+      case "financeflow":
         return (
           <>
-            I created a{" "}
-            <span className="text-white font-semibold">
-              text extraction system
-            </span>{" "}
-            engineered to automate text detection around receipts and documents
-            using OCR.
+            A personal finance management app that helps employees break free
+            from the paycheck-to-paycheck cycle using smart budgeting rules and
+            automated tax calculations.
           </>
         );
       case "ecommerce":
@@ -217,7 +214,7 @@ export const ProductShowcase = () => {
     let variant;
     if (section.id === "yamaha") variant = deviceVariants.laptopLeft;
     else if (section.id === "payment") variant = deviceVariants.phoneRight;
-    else if (section.id === "textract") variant = deviceVariants.laptopTop;
+    else if (section.id === "financeflow") variant = deviceVariants.laptopTop;
     else if (section.id === "ecommerce") variant = deviceVariants.tabletBottom;
 
     const commonProps = {

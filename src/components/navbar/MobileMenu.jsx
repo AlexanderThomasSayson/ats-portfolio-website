@@ -12,7 +12,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
     { title: "Air Event Gala", link: "/projects/airevent" },
     { title: "Loyalty Point System", link: "/projects/payment" },
     { title: "Redyoos", link: "/projects/redyoos" },
-    { title: "Document Textractor", link: "/projects/textract" },
+    { title: "Finance Flow", link: "/projects/financeflow" },
     { title: "MTX Inventory System", link: "/projects/ecommerce" },
   ];
 
