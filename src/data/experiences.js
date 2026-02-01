@@ -6,9 +6,9 @@ export const experiences = [
     shortDescription:
       "Payment Gateway for a Microservices-Based Rewards Point System.",
     company: "Bountiply",
-    role: "Backend Developer",
-    duration: "2023 - 2024",
-    location: "Remote",
+    role: "Senior Backend Developer",
+    duration: "2024 - 2026",
+    location: "Hybrid",
     responsibilities: [
       "Designed and implemented RESTful APIs for payment processing across multiple providers",
       "Built idempotent transaction handling to prevent duplicate payments",
@@ -17,19 +17,21 @@ export const experiences = [
       "Implemented automated retry logic for failed transactions",
     ],
     achievements: [
-      "Processed over $2M in reward payouts with 99.9% success rate",
+      "Processed over ₱2M in reward payouts with 99.9% success rate",
       "Reduced payout processing time from 24 hours to under 5 minutes",
       "Integrated 3 payment providers (PayPal, Tremendous, direct transfers)",
       "Built a reconciliation system that caught discrepancies within hours",
     ],
     technologies: [
-      "Node.js",
-      "Express",
+      "Java SpringBoot",
+      "MySQL",
       "PostgreSQL",
-      "Redis",
+      "UnionBank API",
+      "Pisopay API",
       "PayPal API",
       "Tremendous API",
       "Docker",
+      "AWS"
     ],
     highlights: [
       "Led the architecture design for the payment microservice",
@@ -44,8 +46,8 @@ export const experiences = [
     shortDescription:
       "Ticketing System for Dealer Network Development at Yamaha Philippines.",
     company: "Yamaha Motor Philippines",
-    role: "Full Stack Developer",
-    duration: "2023",
+    role: "Backend Developer",
+    duration: "2024",
     location: "Manila, Philippines",
     responsibilities: [
       "Developed frontend interfaces for ticket creation and management",
@@ -61,12 +63,11 @@ export const experiences = [
       "Automated priority assignment reducing manual triage by 80%",
     ],
     technologies: [
-      "React",
-      "Node.js",
+      "Java SpringBoot",
+      "React.js",
+      "MYSQL",
       "PostgreSQL",
-      "Express",
-      "Socket.io",
-      "Docker",
+      "AWS"
     ],
     highlights: [
       "Collaborated directly with Yamaha's dealer support team to understand pain points",
@@ -82,8 +83,8 @@ export const experiences = [
       "Voucher Redemption Module for a Microservices-Based Rewards Point System.",
     company: "Bountiply",
     role: "Backend Developer",
-    duration: "2023 - 2024",
-    location: "Remote",
+    duration: "2024 - 2026",
+    location: "Hybrid",
     responsibilities: [
       "Designed the voucher generation and validation system",
       "Built APIs for voucher redemption with fraud prevention measures",
@@ -92,18 +93,18 @@ export const experiences = [
       "Developed reporting for voucher usage analytics",
     ],
     achievements: [
-      "Processed over 100,000 voucher redemptions with zero fraud incidents",
+      "Processed over 1,000 voucher redemptions with zero fraud incidents",
       "Reduced voucher validation time to under 100ms",
       "Built a flexible system supporting 15+ voucher types",
       "Achieved 99.99% uptime for the redemption service",
     ],
     technologies: [
-      "Node.js",
-      "Express",
+      "React.js",
+      "Java SpringBoot",
       "PostgreSQL",
       "Redis",
-      "RabbitMQ",
       "Docker",
+      "AWS"
     ],
     highlights: [
       "Designed anti-fraud measures that blocked automated abuse attempts",
@@ -120,7 +121,7 @@ export const experiences = [
     company: "Bountiply",
     role: "Backend Developer",
     duration: "2024",
-    location: "Remote",
+    location: "Hybrid",
     responsibilities: [
       "Built automated log aggregation from multiple microservices",
       "Developed parsing algorithms for structured log analysis",
@@ -136,10 +137,10 @@ export const experiences = [
     ],
     technologies: [
       "Python",
-      "Elasticsearch",
-      "Kibana",
-      "AWS CloudWatch",
-      "PostgreSQL",
+      "Paramiko",
+      "TensorFlow",
+      "AWS EC2",
+      "MySQL",
     ],
     highlights: [
       "Designed the alerting rules that caught a critical bug before production impact",
@@ -182,7 +183,7 @@ export const experiences = [
       "Developed custom preprocessing algorithms that improved OCR accuracy by 20%",
       "Built a feedback loop that continuously improved extraction accuracy",
     ],
-    relatedProject: "financeflow",
+    relatedProject: null,
   },
   {
     id: "event-system",
@@ -191,8 +192,8 @@ export const experiences = [
     shortDescription:
       "Event creation system and rendering for US-based clients.",
     company: "Air Event",
-    role: "Frontend Developer",
-    duration: "2023",
+    role: "Fullstak Developer",
+    duration: "2024-Present",
     location: "Remote (US Client)",
     responsibilities: [
       "Built drag-and-drop event page builder with real-time preview",
@@ -202,18 +203,16 @@ export const experiences = [
       "Built white-label customization system for client branding",
     ],
     achievements: [
-      "Enabled creation of 200+ virtual events for corporate clients",
+      "Enabled creation of virtual events for corporate clients",
       "Achieved 78% average attendee engagement rate",
       "Reduced event setup time by 70% compared to custom development",
       "Supported 10,000 concurrent viewers per event",
     ],
     technologies: [
-      "React",
-      "Node.js",
-      "MongoDB",
-      "Socket.io",
+      "Java SpringBoot",
+      "React.js",
+      "PostgreSQL",
       "AWS S3",
-      "CloudFront",
     ],
     highlights: [
       "Designed the component library that became the foundation of the platform",
