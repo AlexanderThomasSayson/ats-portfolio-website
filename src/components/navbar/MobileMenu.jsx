@@ -11,9 +11,9 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
     { title: "Yamaha DND", link: "/projects/yamaha" },
     { title: "Air Event Gala", link: "/projects/airevent" },
     { title: "Loyalty Point System", link: "/projects/payment" },
+    { title: "Redyoos", link: "/projects/redyoos" },
     { title: "Document Textractor", link: "/projects/textract" },
     { title: "MTX Inventory System", link: "/projects/ecommerce" },
-    { title: "Redyoos", link: "/projects/redyoos" },
   ];
 
   // Handle Escape key to close menu
