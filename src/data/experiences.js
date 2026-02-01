@@ -256,6 +256,78 @@ export const experiences = [
     ],
     relatedProject: "redyoos",
   },
+  {
+    id: "finance-flow",
+    slug: "finance-flow",
+    title: "Finance Flow - Personal Finance Manager",
+    shortDescription:
+      "Personal finance management app helping users break the paycheck-to-paycheck cycle.",
+    company: "Personal Project",
+    role: "Full Stack Developer",
+    duration: "2025",
+    location: "Personal",
+    responsibilities: [
+      "Designed and developed full-stack application using Next.js",
+      "Implemented the 75-15-10 budgeting rule for automated income allocation",
+      "Built loan management system with payment tracking and interest calculations",
+      "Created automated tax calculation engine based on 2024 Philippine tax brackets",
+      "Developed intuitive dashboards for financial visualization and reporting",
+    ],
+    achievements: [
+      "Successfully implemented automated income allocation across three categories",
+      "Built accurate tax calculator for Philippine government tax compliance",
+      "Created comprehensive loan tracking with multiple debt management",
+      "Delivered user-friendly interface for complex financial data visualization",
+    ],
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Node.js",
+    ],
+    highlights: [
+      "Solved a real-world problem of paycheck-to-paycheck financial management",
+      "Implemented Philippine-specific tax calculations for accurate financial planning",
+    ],
+    relatedProject: "financeflow",
+  },
+  {
+    id: "inventory-system",
+    slug: "inventory-system",
+    title: "E-commerce Inventory Management System",
+    shortDescription:
+      "Full-stack inventory platform for Raya Trading with e-wallet and payment processing.",
+    company: "Raya Trading (Freelance)",
+    role: "Full Stack Developer",
+    duration: "2023",
+    location: "Freelance",
+    responsibilities: [
+      "Developed comprehensive inventory management system from scratch",
+      "Implemented secure e-wallet and multi-mode payment processing",
+      "Built administrative dashboard for non-technical users",
+      "Created product search with filtering and pagination",
+      "Optimized SEO and performance for better online visibility",
+    ],
+    achievements: [
+      "Achieved Lighthouse performance score of 95+",
+      "Supported product catalogs of up to 10,000 items with sub-second search",
+      "Reduced checkout abandonment by 30% through UX improvements",
+      "Delivered cost-effective solution compared to expensive platforms",
+    ],
+    technologies: [
+      "Vanilla PHP",
+      "AdminLTE",
+      "MySQL",
+      "Bootstrap CSS",
+      "Hostinger",
+    ],
+    highlights: [
+      "Built scalable solution that handled 10,000+ products efficiently",
+      "Created flexible admin interface enabling client self-management",
+    ],
+    relatedProject: "ecommerce",
+  },
 ];
 
 export const getExperienceBySlug = (slug) => {
