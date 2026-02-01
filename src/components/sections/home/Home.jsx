@@ -3,33 +3,43 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import { motion } from "framer-motion";
+import { useReducedMotion } from "../../../hooks";
 
 export const Home = () => {
+  const prefersReducedMotion = useReducedMotion();
+
   const handleScrollToPortfolio = () => {
     const portfolioSection = document.getElementById("integration-showcase");
     if (portfolioSection) {
-      portfolioSection.scrollIntoView({ behavior: "smooth" });
+      portfolioSection.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
     }
   };
 
-  // Animation variants
-  const container = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.15, // Delay between children
-      },
-    },
-  };
+  // Animation variants with reduced motion support
+  const container = prefersReducedMotion
+    ? { hidden: {}, visible: {} }
+    : {
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: 0.15,
+          },
+        },
+      };
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
+  const item = prefersReducedMotion
+    ? {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { duration: 0.01 } },
+      }
+    : {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.6, ease: "easeOut" },
+        },
+      };
 
   return (
     <section
@@ -118,6 +128,10 @@ export const Home = () => {
               "&:hover": {
                 borderColor: "#ccc",
                 color: "#ccc",
+              },
+              "&:focus-visible": {
+                outline: "2px solid #60a5fa",
+                outlineOffset: "2px",
               },
             }}
           >

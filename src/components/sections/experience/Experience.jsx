@@ -1,271 +1,106 @@
 import * as React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { experiences } from "../../../data/experiences";
+import { useReducedMotion } from "../../../hooks";
 
 export const Experience = () => {
-  const cards = [
-    {
-      description: (
-        <>
-          <span className="text-black-100">Payment Gateway</span> for a
-          Microservices-Based Rewards Point System.
-        </>
-      ),
-    },
-  ];
+  const prefersReducedMotion = useReducedMotion();
 
-  // Animation variants for the cards
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
+  // Animation variants for the cards with reduced motion support
+  const cardVariants = prefersReducedMotion
+    ? {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { duration: 0.01 } },
+      }
+    : {
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.6,
+            ease: "easeOut",
+          },
+        },
+      };
 
   return (
-    <section id="about" className="flex justify-center py-10 px-4 bg-white">
+    <section id="experience" className="flex justify-center py-10 px-4 bg-white">
       <div className="flex flex-col w-full max-w-6xl">
         {/* Header and Description */}
         <div className="flex flex-col items-center text-left mb-12">
-          <h2 className="text-4xl font-semibold dark:text-gray-500 text-black mb-4">
+          <h2 className="text-4xl font-semibold text-neutral-800 mb-4">
             I've worked across diverse
-            <span className="text-black"> projects and domains</span>, solving
+            <span className="text-black font-bold"> projects and domains</span>, solving
             real-world problems and driving impact.
           </h2>
         </div>
 
         {/* Cards Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          <motion.div
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <Box
-              sx={{
-                p: 3,
-                borderRadius: 2,
-                bgcolor: "#f9f9f9",
-                fontSize: "0.95rem",
-                color: "#333",
-                height: "100%",
-              }}
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={exp.id}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
             >
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                fontSize="20px"
-              >
-                <Box component="span" sx={{ color: "black" }}>
-                  Payment Gateway
-                </Box>{" "}
-                for a Microservices-Based{" "}
-                <Box component="span" sx={{ color: "black" }}>
-                  Rewards Point System
+              <Link to={`/experiences/${exp.slug}`} className="block h-full">
+                <Box
+                  sx={{
+                    p: 3,
+                    borderRadius: 2,
+                    bgcolor: "#f9f9f9",
+                    fontSize: "0.95rem",
+                    color: "#333",
+                    height: "100%",
+                    transition: "all 0.2s ease-in-out",
+                    "&:hover": {
+                      bgcolor: "#f0f0f0",
+                      transform: "translateY(-4px)",
+                      boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                    },
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    fontSize="18px"
+                    sx={{ mb: 2 }}
+                  >
+                    {exp.shortDescription}
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: "#666",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 1,
+                    }}
+                  >
+                    <span>{exp.company}</span>
+                    <span>&bull;</span>
+                    <span>{exp.duration}</span>
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: "#525252",
+                      display: "block",
+                      mt: 1,
+                    }}
+                  >
+                    View details &rarr;
+                  </Typography>
                 </Box>
-                .
-              </Typography>
-            </Box>
-          </motion.div>
-
-          <motion.div
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <Box
-              sx={{
-                p: 3,
-                borderRadius: 2,
-                bgcolor: "#f9f9f9",
-                fontSize: "0.95rem",
-                color: "#333",
-                height: "100%",
-              }}
-            >
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                fontSize="20px"
-              >
-                Contributed in a{" "}
-                <Box component="span" sx={{ color: "black" }}>
-                  Ticketing System
-                </Box>{" "}
-                for a Dealer Network Development.
-              </Typography>
-            </Box>
-          </motion.div>
-
-          <motion.div
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <Box
-              sx={{
-                p: 3,
-                borderRadius: 2,
-                bgcolor: "#f9f9f9",
-                fontSize: "0.95rem",
-                color: "#333",
-                height: "100%",
-              }}
-            >
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                fontSize="20px"
-              >
-                <Box component="span" sx={{ color: "black" }}>
-                  Voucher Redemption Module
-                </Box>{" "}
-                for a Microservices-Based{" "}
-                <Box component="span" sx={{ color: "black" }}>
-                  Rewards Point System
-                </Box>
-                .
-              </Typography>
-            </Box>
-          </motion.div>
-
-          <motion.div
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <Box
-              sx={{
-                p: 3,
-                borderRadius: 2,
-                bgcolor: "#f9f9f9",
-                fontSize: "0.95rem",
-                color: "#333",
-                height: "100%",
-              }}
-            >
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                fontSize="20px"
-              >
-                <Box component="span" sx={{ color: "black" }}>
-                  Automated log retrieval
-                </Box>{" "}
-                and{" "}
-                <Box component="span" sx={{ color: "black" }}>
-                  data analysis system
-                </Box>{" "}
-                for reward disbursement tracking.
-              </Typography>
-            </Box>
-          </motion.div>
-
-          <motion.div
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <Box
-              sx={{
-                p: 3,
-                borderRadius: 2,
-                bgcolor: "#f9f9f9",
-                fontSize: "0.95rem",
-                color: "#333",
-                height: "100%",
-              }}
-            >
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                fontSize="20px"
-              >
-                Implements{" "}
-                <Box component="span" sx={{ color: "black" }}>
-                  automated document processing
-                </Box>{" "}
-                and{" "}
-                <Box component="span" sx={{ color: "black" }}>
-                  data extraction
-                </Box>{" "}
-                from unstructured content.
-              </Typography>
-            </Box>
-          </motion.div>
-
-          <motion.div
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <Box
-              sx={{
-                p: 3,
-                borderRadius: 2,
-                bgcolor: "#f9f9f9",
-                fontSize: "0.95rem",
-                color: "#333",
-                height: "100%",
-              }}
-            >
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                fontSize="20px"
-              >
-                <Box component="span" sx={{ color: "black" }}>
-                  Event creation system
-                </Box>{" "}
-                and rendering{" "}
-                <Box component="span" sx={{ color: "black" }}>
-                  for US based clients.
-                </Box>{" "}
-              </Typography>
-            </Box>
-          </motion.div>
-          <Box></Box>
-          <motion.div
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <Box
-              sx={{
-                p: 3,
-                borderRadius: 2,
-                bgcolor: "#f9f9f9",
-                fontSize: "0.95rem",
-                color: "#333",
-                height: "100%",
-              }}
-            >
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                fontSize="20px"
-              >
-                Utilized{" "}
-                <Box component="span" sx={{ color: "black" }}>
-                  AI
-                </Box>{" "}
-                for initial jewelry valuation process.
-              </Typography>
-            </Box>
-          </motion.div>
+              </Link>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

@@ -1,24 +1,64 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { Link } from "react-router-dom";
+import { projects } from "../../data/projects";
+import { useReducedMotion } from "../../hooks";
 
 export const ProductShowcase = () => {
+  const prefersReducedMotion = useReducedMotion();
+
+  // Reduced motion variants - simple fade only
+  const reducedMotionVariant = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.01 } },
+  };
+
+  // Full motion variants
   const deviceVariants = {
-    laptopLeft: {
-      hidden: { x: -200, opacity: 0, scale: 0.9 },
-      visible: { x: 0, opacity: 1, scale: 1, transition: { duration: 0.8 } },
-    },
-    phoneRight: {
-      hidden: { x: 200, opacity: 0, scale: 0.9 },
-      visible: { x: 0, opacity: 1, scale: 1, transition: { duration: 0.8 } },
-    },
-    laptopTop: {
-      hidden: { y: -200, opacity: 0, scale: 0.9 },
-      visible: { y: 0, opacity: 1, scale: 1, transition: { duration: 0.8 } },
-    },
-    tabletBottom: {
-      hidden: { y: 200, opacity: 0, scale: 0.9 },
-      visible: { y: 0, opacity: 1, scale: 1, transition: { duration: 0.8 } },
-    },
+    laptopLeft: prefersReducedMotion
+      ? reducedMotionVariant
+      : {
+          hidden: { x: -200, opacity: 0, scale: 0.9 },
+          visible: {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            transition: { duration: 0.8 },
+          },
+        },
+    phoneRight: prefersReducedMotion
+      ? reducedMotionVariant
+      : {
+          hidden: { x: 200, opacity: 0, scale: 0.9 },
+          visible: {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            transition: { duration: 0.8 },
+          },
+        },
+    laptopTop: prefersReducedMotion
+      ? reducedMotionVariant
+      : {
+          hidden: { y: -200, opacity: 0, scale: 0.9 },
+          visible: {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            transition: { duration: 0.8 },
+          },
+        },
+    tabletBottom: prefersReducedMotion
+      ? reducedMotionVariant
+      : {
+          hidden: { y: 200, opacity: 0, scale: 0.9 },
+          visible: {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            transition: { duration: 0.8 },
+          },
+        },
   };
 
   const { scrollYProgress } = useScroll();
@@ -33,11 +73,14 @@ export const ProductShowcase = () => {
   const opacity = useTransform(smoothProgress, [0.1, 0.3], [0, 1]);
   const scale = useTransform(smoothProgress, [0.1, 0.3], [0.9, 1]);
 
+  // Tilt hook - disabled when reduced motion is preferred
   const useTilt = () => {
     const ref = useRef(null);
     const handleMouseMove = (e) => {
+      // Disable tilt for reduced motion preference or mobile
+      if (prefersReducedMotion) return;
       const card = ref.current;
-      if (!card || window.innerWidth < 768) return; // disable tilt on mobile
+      if (!card || window.innerWidth < 768) return;
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -48,6 +91,7 @@ export const ProductShowcase = () => {
       card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
     };
     const handleMouseLeave = () => {
+      if (prefersReducedMotion) return;
       const card = ref.current;
       if (card) card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
     };
@@ -58,119 +102,109 @@ export const ProductShowcase = () => {
   const tabletTilt = useTilt();
   const laptopTilt = useTilt();
 
-  const sections = [
-    {
-      id: "yamaha",
-      title: "Dealer Network Development",
-      description: (
-        <>
-          I contributed to the development of a centralized{" "}
-          <span className="text-white font-semibold">
-            ticketing and support platform
-          </span>{" "}
-          for{" "}
-          <span className="text-red-500 font-semibold">Yamaha Philippines</span>
-          , enhancing communication efficiency and streamlining issue tracking
-          across its nationwide dealer network.
-        </>
-      ),
-      image: "/images/DND.png",
-      ref: laptopTilt.ref,
-      tilt: laptopTilt,
-      size: "laptop",
-    },
-    {
-      id: "payment",
-      title: "Payment Gateway",
-      description: (
-        <>
-          Engineered a flexible and scalable backend{" "}
-          <span className="text-white font-semibold">payment gateway</span> for
-          seamless transactions — send payouts via PayPal, Tremendous, and more.
-        </>
-      ),
-      image: "/images/payment.png",
-      ref: phoneTilt.ref,
-      tilt: phoneTilt,
-      size: "phone",
-    },
-    {
-      id: "airevent",
-      title: "Air Event Gala",
-      description: (
-        <>
-          I played a key role in developing an engaging, user-friendly{" "}
-          <span className="text-white font-semibold">
-            event creation system
-          </span>{" "}
-          that enables users to easily design, customize, and manage interactive
-          events with an intuitive drag-and-drop interface .
-        </>
-      ),
-      image: "/images/air-event-page.png",
-      ref: laptopTilt.ref,
-      tilt: laptopTilt,
-      size: "laptop",
-    },
-    {
-      id: "redyoos",
-      title: "Redyoos",
-      description: (
-        <>
-          Utilizes AI to determine the initial value of jewelry. Developed a
-          two-way communication module and integrated a PayPal payment gateway
-          to seamlessly process user orders.
-        </>
-      ),
-      image: "/images/redyoos-page.png",
-      ref: laptopTilt.ref,
-      tilt: laptopTilt,
-      size: "tablet",
-    },
-    {
-      id: "textract",
-      title: "Document and Text Extractor",
-      description: (
-        <>
-          I created a{" "}
-          <span className="text-white font-semibold">
-            text extraction system
-          </span>{" "}
-          engineered to automate text detection around receipts and documents
-          using OCR.
-        </>
-      ),
-      image: "/images/textract-v2.png",
-      ref: laptopTilt.ref,
-      tilt: laptopTilt,
-      size: "laptop",
-    },
-    {
-      id: "ecommerce",
-      title: "E-commerce Fullstack",
-      description: (
-        <>
-          I engineered a{" "}
-          <span className="text-white font-semibold">
-            full-stack e-commerce platform
-          </span>{" "}
-          designed for{" "}
-          <span className="text-white font-semibold">
-            scalability, security
-          </span>
-          , and a{" "}
-          <span className="text-white font-semibold">
-            seamless user experience
-          </span>{" "}
-          across all devices.
-        </>
-      ),
-      image: "/images/ats-e-commerce.png",
-      ref: tabletTilt.ref,
-      tilt: tabletTilt,
-      size: "tablet",
-    },
-  ];
+  // Map projects data with tilt handlers and enhanced descriptions
+  const getTilt = (size) => {
+    switch (size) {
+      case "phone":
+        return phoneTilt;
+      case "tablet":
+        return tabletTilt;
+      default:
+        return laptopTilt;
+    }
+  };
+
+  const getDescription = (id) => {
+    switch (id) {
+      case "yamaha":
+        return (
+          <>
+            I contributed to the development of a centralized{" "}
+            <span className="text-white font-semibold">
+              ticketing and support platform
+            </span>{" "}
+            for{" "}
+            <span className="text-red-500 font-semibold">
+              Yamaha Philippines
+            </span>
+            , enhancing communication efficiency and streamlining issue tracking
+            across its nationwide dealer network.
+          </>
+        );
+      case "payment":
+        return (
+          <>
+            Engineered a flexible and scalable backend{" "}
+            <span className="text-white font-semibold">payment gateway </span>
+            enabling seamless disbursement via PayPal, Tremendous, and other
+            providers, with support for voucher redemption and two-way
+            communication.
+          </>
+        );
+      case "airevent":
+        return (
+          <>
+            I played a key role in developing an engaging, user-friendly{" "}
+            <span className="text-white font-semibold">
+              event creation system
+            </span>{" "}
+            that enables users to easily design, customize, and manage
+            interactive events with an intuitive drag-and-drop interface.
+          </>
+        );
+      case "redyoos":
+        return (
+          <>
+            Utilizes AI to determine the initial value of jewelry. Developed a
+            two-way communication module and integrated a PayPal payment gateway
+            to seamlessly process user orders.
+          </>
+        );
+      case "financeflow":
+        return (
+          <>
+            A personal finance management app that helps employees break free
+            from the paycheck-to-paycheck cycle using smart budgeting rules and
+            automated tax calculations.
+          </>
+        );
+      case "ecommerce":
+        return (
+          <>
+            I engineered a{" "}
+            <span className="text-white font-semibold">
+              full-stack e-commerce platform
+            </span>{" "}
+            designed for{" "}
+            <span className="text-white font-semibold">
+              scalability, security
+            </span>
+            , and a{" "}
+            <span className="text-white font-semibold">
+              seamless user experience
+            </span>{" "}
+            across all devices.
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const sections = projects.map((project) => {
+    const tilt = getTilt(project.size);
+    return {
+      id: project.id,
+      slug: project.slug,
+      title: project.title,
+      description: getDescription(project.id),
+      image: project.image,
+      logo: project.logo,
+      ref: tilt.ref,
+      tilt: tilt,
+      size: project.size,
+    };
+  });
 
   const renderDevice = (section) => {
     const baseClasses =
@@ -180,7 +214,7 @@ export const ProductShowcase = () => {
     let variant;
     if (section.id === "yamaha") variant = deviceVariants.laptopLeft;
     else if (section.id === "payment") variant = deviceVariants.phoneRight;
-    else if (section.id === "textract") variant = deviceVariants.laptopTop;
+    else if (section.id === "financeflow") variant = deviceVariants.laptopTop;
     else if (section.id === "ecommerce") variant = deviceVariants.tabletBottom;
 
     const commonProps = {
@@ -200,16 +234,22 @@ export const ProductShowcase = () => {
           <motion.div
             {...commonProps}
             className={`${commonProps.className} w-[80%] max-w-[340px] aspect-[9/19] rounded-[3rem] border-[6px]`}
+            role="img"
+            aria-label={`${section.title} mobile app screenshot`}
           >
             <div className="absolute inset-[8px] rounded-[2.6rem] overflow-hidden bg-black">
               <img
                 src={section.image}
-                alt={section.title}
+                alt=""
                 draggable="false"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-2 bg-gray-700 rounded-full" />
+            {/* Phone notch - decorative */}
+            <div
+              className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-2 bg-gray-700 rounded-full"
+              aria-hidden="true"
+            />
           </motion.div>
         );
       case "laptop":
@@ -217,16 +257,22 @@ export const ProductShowcase = () => {
           <motion.div
             {...commonProps}
             className={`${commonProps.className} w-[90%] max-w-[900px] aspect-[16/9] rounded-3xl border-[6px]`}
+            role="img"
+            aria-label={`${section.title} desktop application screenshot`}
           >
             <div className="absolute inset-[10px] rounded-3xl overflow-hidden bg-black">
               <img
                 src={section.image}
-                alt={section.title}
+                alt=""
                 draggable="false"
                 className="w-full h-full object-contain"
               />
             </div>
-            <div className="absolute bottom-[-20px] left-1/2 -translate-x-1/2 w-[130%] h-6 rounded-b-3xl bg-gradient-to-b from-gray-800 to-black" />
+            {/* Laptop base - decorative */}
+            <div
+              className="absolute bottom-[-20px] left-1/2 -translate-x-1/2 w-[130%] h-6 rounded-b-3xl bg-gradient-to-b from-gray-800 to-black"
+              aria-hidden="true"
+            />
           </motion.div>
         );
       case "tablet":
@@ -234,16 +280,22 @@ export const ProductShowcase = () => {
           <motion.div
             {...commonProps}
             className={`${commonProps.className} w-[90%] max-w-[1100px] aspect-[4/3] rounded-[2.5rem] border-[8px]`}
+            role="img"
+            aria-label={`${section.title} tablet application screenshot`}
           >
             <div className="absolute inset-[10px] rounded-[2rem] overflow-hidden bg-black">
               <img
                 src={section.image}
-                alt={section.title}
+                alt=""
                 draggable="false"
                 className="w-full h-full object-contain"
               />
             </div>
-            <div className="absolute top-[12px] left-1/2 -translate-x-1/2 w-3 h-3 bg-neutral-700 rounded-full" />
+            {/* Tablet camera - decorative */}
+            <div
+              className="absolute top-[12px] left-1/2 -translate-x-1/2 w-3 h-3 bg-neutral-700 rounded-full"
+              aria-hidden="true"
+            />
           </motion.div>
         );
       default:
@@ -261,47 +313,16 @@ export const ProductShowcase = () => {
           key={section.id}
           className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 py-20 sm:px-8 md:px-12"
         >
-          {/* ✅ Show Yamaha logo only for the Dealer Network section */}
-          {section.id === "yamaha" && (
+          {/* Logo */}
+          {section.logo && (
             <motion.img
-              initial={{ opacity: 0, y: 20 }}
+              initial={
+                prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }
+              }
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              src="/images/yamaha.png"
-              alt="Yamaha Logo"
-              draggable="false"
-              className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"
-            />
-          )}
-          {section.id === "airevent" && (
-            <motion.img
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              src="/images/air-event-logo.png"
-              alt="Yamaha Logo"
-              draggable="false"
-              className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"
-            />
-          )}
-          {section.id === "payment" && (
-            <motion.img
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              src="/images/bountiply.png"
-              alt="Yamaha Logo"
-              draggable="false"
-              className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"
-            />
-          )}
-          {section.id === "redyoos" && (
-            <motion.img
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              src="/images/redyoos-logo-white.png"
-              alt="Yamaha Logo"
+              transition={{ duration: prefersReducedMotion ? 0.01 : 0.6 }}
+              src={section.logo}
+              alt={`${section.title} Logo`}
               draggable="false"
               className="w-24 sm:w-28 md:w-32 mb-4 drop-shadow-[0_4px_8px_rgba(255,255,255,0.1)]"
             />
@@ -311,9 +332,18 @@ export const ProductShowcase = () => {
             {section.title}
           </h2>
 
-          <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed mb-12 sm:mb-16">
+          <p className="text-gray-300 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed mb-8">
             {section.description}
           </p>
+
+          {/* View Details Link */}
+          <Link
+            to={`/projects/${section.slug}`}
+            className="mb-12 sm:mb-16 px-6 py-3 bg-neutral-800 hover:bg-neutral-700 text-white text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-black"
+            aria-label={`View case study for ${section.title}`}
+          >
+            View Case Study &rarr;
+          </Link>
 
           {renderDevice(section)}
         </div>

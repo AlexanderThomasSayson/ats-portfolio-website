@@ -2,8 +2,10 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import Typography from "@mui/material/Typography";
+import { useReducedMotion } from "../../../hooks";
 
 export const Contact = () => {
+  const prefersReducedMotion = useReducedMotion();
   const socials = [
     {
       name: "Facebook",
@@ -33,9 +35,9 @@ export const Contact = () => {
       className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-6"
     >
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: prefersReducedMotion ? 0.01 : 0.7 }}
         viewport={{ once: true }}
         className="text-center"
       >
@@ -68,17 +70,18 @@ export const Contact = () => {
           platforms below.
         </Typography>
 
-        <div className="flex gap-6 justify-center">
+        <div className="flex gap-4 justify-center" role="list" aria-label="Social media links">
           {socials.map((social, index) => (
             <motion.a
               key={index}
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.2, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="text-gray-300 hover:text-white transition-colors"
-              title={social.name}
+              whileHover={prefersReducedMotion ? {} : { scale: 1.1, y: -2 }}
+              whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+              className="text-gray-300 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              aria-label={`Visit ${social.name} profile (opens in new tab)`}
+              role="listitem"
             >
               {social.icon}
             </motion.a>
@@ -88,7 +91,7 @@ export const Contact = () => {
         <Typography
           variant="body2"
           sx={{
-            color: "#666",
+            color: "#a3a3a3",
             mt: 10,
             fontSize: "0.85rem",
           }}

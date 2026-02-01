@@ -1,28 +1,46 @@
 import "./Logo.css";
 
+// Logo carousel is decorative - shows technology expertise
+// Using aria-hidden to prevent screen reader confusion
 export const Logo = () => {
+  const logos = [
+    { src: "/images/next-js-white.png", name: "Next.js" },
+    { src: "/images/spring-gray.png", name: "Spring Boot" },
+    { src: "/images/react-js-gray.png", name: "React" },
+    { src: "/images/git-gray.png", name: "Git" },
+    { src: "/images/aws-gray.png", name: "AWS" },
+    { src: "/images/node-js-gray.png", name: "Node.js" },
+    { src: "/images/docker-gray.png", name: "Docker" },
+    { src: "/images/python-1.png", name: "Python" },
+  ];
+
   return (
-    <section id="logo" className="logo-section">
+    <section
+      id="logo"
+      className="logo-section"
+      aria-hidden="true"
+      role="presentation"
+    >
       <div className="logo-mask">
         <div className="carousel-track">
-          {/* Manually added logos */}
-          <img src="/images/next-js-white.png" alt="Spring" draggable="false" />
-          <img src="/images/spring-gray.png" alt="Spring" draggable="false" />
-          <img src="/images/react-js-gray.png" alt="React" draggable="false" />
-          <img src="/images/git-gray.png" alt="Spring" draggable="false" />
-          <img src="/images/aws-gray.png" alt="Spring" draggable="false" />
-          <img src="/images/node-js-gray.png" alt="Spring" draggable="false" />
-          <img src="/images/docker-gray.png" alt="Spring" draggable="false" />
-          <img src="/images/python-1.png" alt="Spring" draggable="false" />
+          {/* Primary logos */}
+          {logos.map((logo, index) => (
+            <img
+              key={`primary-${index}`}
+              src={logo.src}
+              alt=""
+              draggable="false"
+            />
+          ))}
           {/* Duplicate logos for seamless loop */}
-          <img src="/images/next-js-white.png" alt="Spring" draggable="false" />
-          <img src="/images/spring-gray.png" alt="Spring" draggable="false" />
-          <img src="/images/react-js-gray.png" alt="React" draggable="false" />
-          <img src="/images/git-gray.png" alt="Spring" draggable="false" />
-          <img src="/images/aws-gray.png" alt="Spring" draggable="false" />
-          <img src="/images/node-js-gray.png" alt="Spring" draggable="false" />
-          <img src="/images/docker-gray.png" alt="Spring" draggable="false" />
-          <img src="/images/python-1.png" alt="Spring" draggable="false" />
+          {logos.map((logo, index) => (
+            <img
+              key={`duplicate-${index}`}
+              src={logo.src}
+              alt=""
+              draggable="false"
+            />
+          ))}
         </div>
       </div>
     </section>
