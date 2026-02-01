@@ -27,9 +27,9 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
   const works = [
     { title: "Yamaha DND", link: "/projects/yamaha" },
     { title: "Air Event Gala", link: "/projects/airevent" },
-    { title: "Payment Gateway", link: "/projects/payment" },
+    { title: "Loyalty Point System", link: "/projects/payment" },
     { title: "Document Textractor", link: "/projects/textract" },
-    { title: "E-commerce Platform", link: "/projects/ecommerce" },
+    { title: "MTX Inventory System", link: "/projects/ecommerce" },
     { title: "Redyoos", link: "/projects/redyoos" },
   ];
 
@@ -57,7 +57,10 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8 font-medium" aria-label="Main navigation">
+          <nav
+            className="hidden md:flex items-center space-x-8 font-medium"
+            aria-label="Main navigation"
+          >
             {[
               { label: "Home", to: "/" },
               { label: "About", to: "/#about" },

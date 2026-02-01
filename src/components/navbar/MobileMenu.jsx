@@ -10,9 +10,9 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
   const works = [
     { title: "Yamaha DND", link: "/projects/yamaha" },
     { title: "Air Event Gala", link: "/projects/airevent" },
-    { title: "Payment Gateway", link: "/projects/payment" },
+    { title: "Loyalty Point System", link: "/projects/payment" },
     { title: "Document Textractor", link: "/projects/textract" },
-    { title: "E-commerce Platform", link: "/projects/ecommerce" },
+    { title: "MTX Inventory System", link: "/projects/ecommerce" },
     { title: "Redyoos", link: "/projects/redyoos" },
   ];
 
@@ -23,7 +23,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
         setMenuOpen(false);
       }
     },
-    [menuOpen, setMenuOpen]
+    [menuOpen, setMenuOpen],
   );
 
   useEffect(() => {
@@ -150,7 +150,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
             >
               {label}
             </button>
-          )
+          ),
         )}
       </nav>
     </div>

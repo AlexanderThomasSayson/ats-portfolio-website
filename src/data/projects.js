@@ -33,7 +33,7 @@ export const projects = [
       "Enabled real-time tracking of over 500 daily support requests",
       "Decreased manual data entry by 90% through automated workflows",
     ],
-    screenshots: ["/images/DND.png"],
+    screenshots: ["/images/dnd/dashboard.png","/images/dnd/ticket_filing.png","/images/dnd/area_management.png","/images/dnd/view_ticket.png","/images/DND.png"],
     role: "Backend Developer",
     duration: "3 months",
     team: "5 developers",
