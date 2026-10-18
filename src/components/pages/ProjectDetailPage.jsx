@@ -5,6 +5,7 @@ import { PageLayout } from "../shared/PageLayout";
 import { SectionCard, ListCard, TechBadge } from "../shared/SectionCard";
 import { ImageGallery } from "../shared/ImageGallery";
 import { getProjectBySlug } from "../../data/projects";
+import mockupSizes from "../../data/mockupSizes.json";
 
 export const ProjectDetailPage = ({ menuOpen, setMenuOpen }) => {
   const { slug } = useParams();
@@ -99,16 +100,32 @@ export const ProjectDetailPage = ({ menuOpen, setMenuOpen }) => {
         </motion.header>
 
         {/* Hero Image */}
-        <motion.div
-          variants={itemVariants}
-          className="relative rounded-2xl overflow-hidden bg-neutral-900 aspect-video"
-        >
-          <img
-            src={project.image}
-            alt={`${project.title} - Application interface screenshot showing the main features`}
-            className="w-full h-full object-contain"
-          />
-        </motion.div>
+        {project.heroMockup && mockupSizes[project.heroMockup] ? (
+          <motion.div
+            variants={itemVariants}
+            className="relative rounded-2xl overflow-hidden bg-gradient-to-b from-neutral-900 to-black flex items-center justify-center h-[55vh] min-h-[320px] max-h-[560px]"
+          >
+            <img
+              src={project.heroMockup}
+              alt={`${project.title} - Application interface mockup showing the main features`}
+              width={mockupSizes[project.heroMockup].width}
+              height={mockupSizes[project.heroMockup].height}
+              decoding="async"
+              className="w-auto h-auto max-w-full max-h-full"
+            />
+          </motion.div>
+        ) : (
+          <motion.div
+            variants={itemVariants}
+            className="relative rounded-2xl overflow-hidden bg-neutral-900 aspect-video"
+          >
+            <img
+              src={project.image}
+              alt={`${project.title} - Application interface screenshot showing the main features`}
+              className="w-full h-full object-contain"
+            />
+          </motion.div>
+        )}
 
         {/* Technologies */}
         <motion.div variants={itemVariants} className="space-y-4">

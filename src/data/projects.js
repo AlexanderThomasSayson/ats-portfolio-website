@@ -6,8 +6,9 @@ export const projects = [
     shortDescription:
       "A centralized ticketing and support platform for Yamaha Philippines, enhancing communication efficiency across its nationwide dealer network.",
     image: "/images/DND.png",
+    mockup: "/images/mockups/DnD.webp",
+    heroMockup: "/images/mockups/projects/DnD.webp",
     logo: "/images/yamaha.png",
-    size: "laptop",
     technologies: [
       "Java SpringBoot",
       "React.js",
@@ -45,8 +46,9 @@ export const projects = [
     shortDescription:
       "A modular microservices platform with integrated payments and rewards, supporting user, voucher, coupon, cart, points, and notification services—powered by a flexible disbursement gateway for PayPal, Tremendous, and other providers, with voucher redemption and two-way communication.",
     image: "/images/bountiply/bountiply_dashboard.png",
+    mockup: "/images/mockups/Loyalty.webp",
+    heroMockup: "/images/mockups/projects/Loyalty.webp",
     logo: "/images/bountiply.png",
-    size: "laptop",
     technologies: [
       "SpringBoot Java",
       "MySQL",
@@ -90,8 +92,9 @@ export const projects = [
     shortDescription:
       "An engaging event creation system that enables users to design, customize, and manage interactive events with drag-and-drop interface.",
     image: "/images/air-event-page.png",
+    mockup: "/images/mockups/AirEvent.webp",
+    heroMockup: "/images/mockups/projects/AirEvent.webp",
     logo: "/images/air-event-logo.png",
-    size: "laptop",
     technologies: [
       "React",
       "Java Springboot",
@@ -129,8 +132,8 @@ export const projects = [
     shortDescription:
       "An AI-powered jewelry valuation platform with two-way communication and PayPal payment integration for seamless user orders.",
     image: "/images/redyoos-page.png",
+    mockup: "/images/mockups/Redyoss.webp",
     logo: "/images/redyoos-logo-white.png",
-    size: "tablet",
     technologies: [
       "FastAPI",
       "Python",
@@ -168,8 +171,8 @@ export const projects = [
     shortDescription:
       "A personal finance management app that helps employees break free from the paycheck-to-paycheck cycle using smart budgeting rules and automated tax calculations.",
     image: "/images/financeflow/dashboard.png",
+    mockup: "/images/mockups/FinanceFlow.webp",
     logo: null,
-    size: "laptop",
     technologies: [
       "Next.js",
       "React",
@@ -205,8 +208,8 @@ export const projects = [
     shortDescription:
       "A full-stack inventory platform designed for scalability, security, and seamless user experience across all devices.",
     image: "/images/mtx/mtx_dashboard.png",
+    mockup: "/images/mockups/RayaTrading.webp",
     logo: null,
-    size: "tablet",
     technologies: [
       "Vanilla PHP",
       "AdminLTE",
