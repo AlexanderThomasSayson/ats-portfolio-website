@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const navLinks = [
   { label: "Home", to: "/" },
-  { label: "About", to: "/#about" },
+  { label: "Experience", to: "/#about" },
   { label: "Resume", to: "/#resume" },
   { label: "Contact", to: "/contact" },
 ];
@@ -152,7 +152,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
           {/* Brand */}
           <Link
             to="/"
-            className="font-mono text-xl font-bold text-white tracking-wide hover:text-gray-300 transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="font-mono text-xl font-bold text-white tracking-wide hover:text-gray-300 transition-colors rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
             onClick={() => setMenuOpen(false)}
           >
             Alexander <span className="text-gray-300">Thomas</span> Sayson
@@ -161,7 +161,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="w-10 h-10 relative z-40 text-white md:hidden flex items-center justify-center rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-black"
+            className="w-10 h-10 relative z-40 text-white md:hidden flex items-center justify-center rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
