@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Source mockup renders (large; only the optimized .webp in public/ ships)
+design-source/

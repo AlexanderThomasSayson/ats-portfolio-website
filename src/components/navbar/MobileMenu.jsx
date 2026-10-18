@@ -8,6 +8,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
   const [worksOpen, setWorksOpen] = useState(false);
 
   const works = [
+    { title: "Circle K LIFT", link: "/projects/circlek" },
     { title: "Yamaha DND", link: "/projects/yamaha" },
     { title: "Air Event Gala", link: "/projects/airevent" },
     { title: "Loyalty Point System", link: "/projects/payment" },

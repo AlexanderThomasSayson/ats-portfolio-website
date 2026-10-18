@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { projects } from "../../data/projects";
 import { useReducedMotion } from "../../hooks";
+import { ProjectMockup } from "./ProjectMockup";
 
 export const ProductShowcase = () => {
   const prefersReducedMotion = useReducedMotion();
@@ -61,61 +61,24 @@ export const ProductShowcase = () => {
         },
   };
 
-  const { scrollYProgress } = useScroll();
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  const translateY = useTransform(smoothProgress, [0, 1], [100, 0]);
-  const opacity = useTransform(smoothProgress, [0.1, 0.3], [0, 1]);
-  const scale = useTransform(smoothProgress, [0.1, 0.3], [0.9, 1]);
-
-  // Tilt hook - disabled when reduced motion is preferred
-  const useTilt = () => {
-    const ref = useRef(null);
-    const handleMouseMove = (e) => {
-      // Disable tilt for reduced motion preference or mobile
-      if (prefersReducedMotion) return;
-      const card = ref.current;
-      if (!card || window.innerWidth < 768) return;
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * 8;
-      const rotateY = ((x - centerX) / centerX) * 8;
-      card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-    };
-    const handleMouseLeave = () => {
-      if (prefersReducedMotion) return;
-      const card = ref.current;
-      if (card) card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
-    };
-    return { ref, handleMouseMove, handleMouseLeave };
-  };
-
-  const phoneTilt = useTilt();
-  const tabletTilt = useTilt();
-  const laptopTilt = useTilt();
-
-  // Map projects data with tilt handlers and enhanced descriptions
-  const getTilt = (size) => {
-    switch (size) {
-      case "phone":
-        return phoneTilt;
-      case "tablet":
-        return tabletTilt;
-      default:
-        return laptopTilt;
-    }
+  // Entry direction per project; anything unlisted slides up from the bottom
+  const entryVariants = {
+    yamaha: deviceVariants.laptopLeft,
+    payment: deviceVariants.phoneRight,
+    financeflow: deviceVariants.laptopTop,
   };
 
   const getDescription = (id) => {
     switch (id) {
+      case "circlek":
+        return (
+          <>
+            I help maintain and ship new features for the legacy{" "}
+            <span className="text-white font-semibold">LIFT Platform</span> at{" "}
+            <span className="text-red-500 font-semibold">Circle K</span>,
+            specifically its cashier-facing and customer-facing screens.
+          </>
+        );
       case "yamaha":
         return (
           <>
@@ -191,117 +154,14 @@ export const ProductShowcase = () => {
     }
   };
 
-  const sections = projects.map((project) => {
-    const tilt = getTilt(project.size);
-    return {
-      id: project.id,
-      slug: project.slug,
-      title: project.title,
-      description: getDescription(project.id),
-      image: project.image,
-      logo: project.logo,
-      ref: tilt.ref,
-      tilt: tilt,
-      size: project.size,
-    };
-  });
-
-  const renderDevice = (section) => {
-    const baseClasses =
-      "mx-auto relative transition-transform duration-300 ease-out border-neutral-800 bg-neutral-950 shadow-[0_25px_80px_rgba(0,0,0,0.6)]";
-
-    // Determine variant based on device & order
-    let variant;
-    if (section.id === "yamaha") variant = deviceVariants.laptopLeft;
-    else if (section.id === "payment") variant = deviceVariants.phoneRight;
-    else if (section.id === "financeflow") variant = deviceVariants.laptopTop;
-    else if (section.id === "ecommerce") variant = deviceVariants.tabletBottom;
-
-    const commonProps = {
-      ref: section.ref,
-      onMouseMove: section.tilt.handleMouseMove,
-      onMouseLeave: section.tilt.handleMouseLeave,
-      variants: variant,
-      initial: "hidden",
-      whileInView: "visible",
-      viewport: { once: true, amount: 0.3 },
-      className: baseClasses,
-    };
-
-    switch (section.size) {
-      case "phone":
-        return (
-          <motion.div
-            {...commonProps}
-            className={`${commonProps.className} w-[80%] max-w-[340px] aspect-[9/19] rounded-[3rem] border-[6px]`}
-            role="img"
-            aria-label={`${section.title} mobile app screenshot`}
-          >
-            <div className="absolute inset-[8px] rounded-[2.6rem] overflow-hidden bg-black">
-              <img
-                src={section.image}
-                alt=""
-                draggable="false"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Phone notch - decorative */}
-            <div
-              className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-2 bg-gray-700 rounded-full"
-              aria-hidden="true"
-            />
-          </motion.div>
-        );
-      case "laptop":
-        return (
-          <motion.div
-            {...commonProps}
-            className={`${commonProps.className} w-[90%] max-w-[900px] aspect-[16/9] rounded-3xl border-[6px]`}
-            role="img"
-            aria-label={`${section.title} desktop application screenshot`}
-          >
-            <div className="absolute inset-[10px] rounded-3xl overflow-hidden bg-black">
-              <img
-                src={section.image}
-                alt=""
-                draggable="false"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            {/* Laptop base - decorative */}
-            <div
-              className="absolute bottom-[-20px] left-1/2 -translate-x-1/2 w-[130%] h-6 rounded-b-3xl bg-gradient-to-b from-gray-800 to-black"
-              aria-hidden="true"
-            />
-          </motion.div>
-        );
-      case "tablet":
-        return (
-          <motion.div
-            {...commonProps}
-            className={`${commonProps.className} w-[90%] max-w-[1100px] aspect-[4/3] rounded-[2.5rem] border-[8px]`}
-            role="img"
-            aria-label={`${section.title} tablet application screenshot`}
-          >
-            <div className="absolute inset-[10px] rounded-[2rem] overflow-hidden bg-black">
-              <img
-                src={section.image}
-                alt=""
-                draggable="false"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            {/* Tablet camera - decorative */}
-            <div
-              className="absolute top-[12px] left-1/2 -translate-x-1/2 w-3 h-3 bg-neutral-700 rounded-full"
-              aria-hidden="true"
-            />
-          </motion.div>
-        );
-      default:
-        return null;
-    }
-  };
+  const sections = projects.map((project) => ({
+    id: project.id,
+    slug: project.slug,
+    title: project.title,
+    description: getDescription(project.id),
+    logo: project.logo,
+    mockup: project.mockup,
+  }));
 
   return (
     <section
@@ -345,7 +205,11 @@ export const ProductShowcase = () => {
             View Case Study &rarr;
           </Link>
 
-          {renderDevice(section)}
+          <ProjectMockup
+            title={section.title}
+            src={section.mockup}
+            variants={entryVariants[section.id] ?? deviceVariants.tabletBottom}
+          />
         </div>
       ))}
     </section>

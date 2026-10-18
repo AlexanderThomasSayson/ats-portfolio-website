@@ -1,13 +1,43 @@
 export const projects = [
   {
+    id: "circlek",
+    slug: "circlek",
+    title: "Circle K LIFT Platform",
+    shortDescription:
+      "Maintaining and shipping new features for Circle K's legacy LIFT Platform, focusing on its cashier-facing and customer-facing screens.",
+    image: "/images/mockups/CK.webp",
+    mockup: "/images/mockups/CK.webp",
+    heroMockup: "/images/mockups/CK.webp",
+    logo: "/images/ck-logo.png",
+    technologies: ["Java", "AWS"],
+    problem:
+      "The LIFT Platform is a legacy system that cashiers and customers rely on every day at Circle K. Because it sits at the point of sale, the screens people use must stay dependable while the business keeps asking for new capabilities, which makes every change to a long-lived codebase a careful one.",
+    solution:
+      "I help maintain and ship new features for the LIFT Platform, specifically its cashier-facing and customer-facing screens. My work covers fixing issues in existing flows and delivering new functionality without disrupting the people who use the platform in stores.",
+    challenges: [
+      "Working within a legacy codebase while delivering new features safely",
+      "Keeping cashier-facing and customer-facing screens consistent and dependable",
+      "Shipping changes without disrupting day-to-day store operations",
+    ],
+    outcomes: [
+      "Actively maintaining the cashier-facing and customer-facing screens of the LIFT Platform",
+      "Continuously shipping new features to the platform",
+    ],
+    screenshots: [],
+    role: "Junior Java Cloud Engineer",
+    duration: "Ongoing",
+    team: "Product team",
+  },
+  {
     id: "yamaha",
     slug: "yamaha",
     title: "Dealer Network Development",
     shortDescription:
       "A centralized ticketing and support platform for Yamaha Philippines, enhancing communication efficiency across its nationwide dealer network.",
     image: "/images/DND.png",
+    mockup: "/images/mockups/DnD.webp",
+    heroMockup: "/images/mockups/projects/DnD.webp",
     logo: "/images/yamaha.png",
-    size: "laptop",
     technologies: [
       "Java SpringBoot",
       "React.js",
@@ -45,8 +75,9 @@ export const projects = [
     shortDescription:
       "A modular microservices platform with integrated payments and rewards, supporting user, voucher, coupon, cart, points, and notification services—powered by a flexible disbursement gateway for PayPal, Tremendous, and other providers, with voucher redemption and two-way communication.",
     image: "/images/bountiply/bountiply_dashboard.png",
+    mockup: "/images/mockups/Loyalty.webp",
+    heroMockup: "/images/mockups/projects/Loyalty.webp",
     logo: "/images/bountiply.png",
-    size: "laptop",
     technologies: [
       "SpringBoot Java",
       "MySQL",
@@ -90,8 +121,9 @@ export const projects = [
     shortDescription:
       "An engaging event creation system that enables users to design, customize, and manage interactive events with drag-and-drop interface.",
     image: "/images/air-event-page.png",
+    mockup: "/images/mockups/AirEvent.webp",
+    heroMockup: "/images/mockups/projects/AirEvent.webp",
     logo: "/images/air-event-logo.png",
-    size: "laptop",
     technologies: [
       "React",
       "Java Springboot",
@@ -129,8 +161,8 @@ export const projects = [
     shortDescription:
       "An AI-powered jewelry valuation platform with two-way communication and PayPal payment integration for seamless user orders.",
     image: "/images/redyoos-page.png",
+    mockup: "/images/mockups/Redyoss.webp",
     logo: "/images/redyoos-logo-white.png",
-    size: "tablet",
     technologies: [
       "FastAPI",
       "Python",
@@ -168,8 +200,8 @@ export const projects = [
     shortDescription:
       "A personal finance management app that helps employees break free from the paycheck-to-paycheck cycle using smart budgeting rules and automated tax calculations.",
     image: "/images/financeflow/dashboard.png",
+    mockup: "/images/mockups/FinanceFlow.webp",
     logo: null,
-    size: "laptop",
     technologies: [
       "Next.js",
       "React",
@@ -205,8 +237,8 @@ export const projects = [
     shortDescription:
       "A full-stack inventory platform designed for scalability, security, and seamless user experience across all devices.",
     image: "/images/mtx/mtx_dashboard.png",
+    mockup: "/images/mockups/RayaTrading.webp",
     logo: null,
-    size: "tablet",
     technologies: [
       "Vanilla PHP",
       "AdminLTE",

@@ -1,11 +1,36 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useLayoutEffect, useState, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+
+const navLinks = [
+  { label: "Home", to: "/" },
+  { label: "About", to: "/#about" },
+  { label: "Resume", to: "/#resume" },
+  { label: "Contact", to: "/contact" },
+];
+
+// Home-page sections highlighted by scroll position (anything above them is Home)
+const SPY_SECTIONS = ["about", "resume"];
+// Tab horizontal padding (px-2) and gap below the label; keep in sync with the tab classes
+const TAB_PADDING_X = 8;
+const UNDERLINE_GAP = 2;
+const BOTTOM_TOLERANCE_PX = 4;
+// How long a click-initiated smooth scroll may run before scroll-spy takes over again
+const SCROLL_LOCK_MS = 1000;
 
 export const Navbar = ({ menuOpen, setMenuOpen }) => {
+  const { pathname, hash } = useLocation();
   const [worksOpen, setWorksOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const desktopNavRef = useRef(null);
+  const tabRefs = useRef({});
+  const [underline, setUnderline] = useState(null);
+  const [spy, setSpy] = useState(() =>
+    SPY_SECTIONS.includes(hash.slice(1)) ? hash.slice(1) : null
+  );
+  const spyLockedRef = useRef(false);
 
   // Prevent background scroll when mobile menu is open
   useEffect(() => {
@@ -24,7 +49,94 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // On the home page the active tab follows the section in view, not just the URL
+  useEffect(() => {
+    if (pathname !== "/") return;
+
+    const sync = () => {
+      const line = window.innerHeight * 0.4;
+      let current = null;
+      for (const id of SPY_SECTIONS) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) current = id;
+      }
+      // The last section is short, so its top may never reach the line before
+      // the page runs out of scroll; treat the page bottom as being in it
+      const atBottom =
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - BOTTOM_TOLERANCE_PX;
+      if (atBottom) current = SPY_SECTIONS[SPY_SECTIONS.length - 1];
+      setSpy(current);
+    };
+
+    // A nav click starts a smooth scroll: trust the URL until it settles so the
+    // underline doesn't hop across the sections it passes
+    const target = hash.slice(1);
+    setSpy(SPY_SECTIONS.includes(target) ? target : null);
+    spyLockedRef.current = true;
+
+    let timer;
+    const unlock = () => {
+      clearTimeout(timer);
+      spyLockedRef.current = false;
+      sync();
+    };
+    timer = setTimeout(unlock, SCROLL_LOCK_MS);
+
+    const onScroll = () => {
+      if (!spyLockedRef.current) sync();
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scrollend", unlock);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scrollend", unlock);
+    };
+  }, [pathname, hash]);
+
+  const isLinkActive = (to) => {
+    if (pathname !== "/") return pathname === to;
+    if (to === "/") return spy === null;
+    return to.startsWith("/#") && spy === to.slice(2);
+  };
+  const isWorksActive = pathname.startsWith("/projects");
+  const activeTab = isWorksActive
+    ? "Works"
+    : navLinks.find(({ to }) => isLinkActive(to))?.label;
+
+  // Position the underline from viewport rects (scroll-independent), so it only
+  // ever moves horizontally between tabs
+  useLayoutEffect(() => {
+    const nav = desktopNavRef.current;
+    const measure = () => {
+      const tab = tabRefs.current[activeTab];
+      if (!tab || !nav || tab.offsetParent === null) {
+        setUnderline(null);
+        return;
+      }
+      const t = tab.getBoundingClientRect();
+      const n = nav.getBoundingClientRect();
+      setUnderline({
+        x: t.left - n.left + TAB_PADDING_X,
+        width: t.width - TAB_PADDING_X * 2,
+        top: t.bottom - n.top + UNDERLINE_GAP,
+      });
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    // Tab widths change when web fonts load or the nav reflows
+    const observer = new ResizeObserver(measure);
+    if (nav) observer.observe(nav);
+    document.fonts?.ready.then(measure);
+    return () => {
+      window.removeEventListener("resize", measure);
+      observer.disconnect();
+    };
+  }, [activeTab]);
+
   const works = [
+    { title: "Circle K LIFT", link: "/projects/circlek" },
     { title: "Yamaha DND", link: "/projects/yamaha" },
     { title: "Air Event Gala", link: "/projects/airevent" },
     { title: "Loyalty Point System", link: "/projects/payment" },
@@ -58,31 +170,39 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
           {/* Desktop Navigation */}
           <nav
-            className="hidden md:flex items-center space-x-8 font-medium"
+            ref={desktopNavRef}
+            className="hidden md:flex items-center space-x-8 font-medium relative"
             aria-label="Main navigation"
           >
-            {[
-              { label: "Home", to: "/" },
-              { label: "About", to: "/#about" },
-              { label: "Resume", to: "/#resume" },
-              { label: "Contact", to: "/contact" },
-            ].map(({ label, to }) => (
-              <Link
-                key={label}
-                to={to}
-                onClick={() => setMenuOpen(false)}
-                className="text-gray-300 hover:text-white transition-colors rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              >
-                {label}
-              </Link>
-            ))}
+            {navLinks.map(({ label, to }) => {
+              const active = isLinkActive(to);
+              return (
+                <Link
+                  key={label}
+                  ref={(el) => {
+                    tabRefs.current[label] = el;
+                  }}
+                  to={to}
+                  onClick={() => setMenuOpen(false)}
+                  aria-current={active ? "page" : undefined}
+                  className={`relative transition-colors rounded-lg px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${
+                    active ? "text-white" : "text-gray-300 hover:text-white"
+                  }`}
+                >
+                  {label}
+                </Link>
+              );
+            })}
 
             {/* Works Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
+                ref={(el) => {
+                  tabRefs.current.Works = el;
+                }}
                 onClick={() => setWorksOpen((prev) => !prev)}
-                className={`flex items-center text-gray-300 hover:text-white transition-colors rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
-                  worksOpen ? "text-white" : ""
+                className={`relative flex items-center text-gray-300 hover:text-white transition-colors rounded-lg px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${
+                  worksOpen || isWorksActive ? "text-white" : ""
                 }`}
                 aria-expanded={worksOpen}
                 aria-haspopup="true"
@@ -122,6 +242,18 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                 </div>
               )}
             </div>
+
+            {/* Active tab underline */}
+            {underline && (
+              <motion.span
+                className="absolute left-0 h-0.5 rounded-full bg-white pointer-events-none"
+                style={{ top: underline.top }}
+                initial={false}
+                animate={{ x: underline.x, width: underline.width }}
+                transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                aria-hidden="true"
+              />
+            )}
           </nav>
         </div>
       </div>
