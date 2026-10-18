@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const navLinks = [
   { label: "Home", to: "/" },
-  { label: "Experience", to: "/#about" },
+  { label: "About", to: "/#about" },
   { label: "Resume", to: "/#resume" },
   { label: "Contact", to: "/contact" },
 ];
@@ -17,8 +17,12 @@ const SPY_SECTIONS = ["about", "resume"];
 const TAB_PADDING_X = 8;
 const UNDERLINE_GAP = 2;
 const BOTTOM_TOLERANCE_PX = 4;
-// How long a click-initiated smooth scroll may run before scroll-spy takes over again
-const SCROLL_LOCK_MS = 1000;
+// A click-initiated smooth scroll counts as finished after this much scroll silence
+const SCROLL_SETTLE_MS = 150;
+// How long to wait for the first scroll event after a click before assuming no scroll is coming
+const SCROLL_START_GRACE_MS = 400;
+// Hard cap on how long a click may hold scroll-spy off
+const SCROLL_LOCK_MAX_MS = 3000;
 
 export const Navbar = ({ menuOpen, setMenuOpen }) => {
   const { pathname, hash } = useLocation();
@@ -75,23 +79,33 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
     setSpy(SPY_SECTIONS.includes(target) ? target : null);
     spyLockedRef.current = true;
 
-    let timer;
+    // Unlock only once scrolling has actually gone quiet. A fixed timeout or a
+    // stray scrollend can release the lock mid-scroll, letting the spy briefly
+    // report the section being passed (About) before the target (Resume)
+    let settleTimer;
+    let maxTimer;
     const unlock = () => {
-      clearTimeout(timer);
+      clearTimeout(settleTimer);
+      clearTimeout(maxTimer);
       spyLockedRef.current = false;
       sync();
     };
-    timer = setTimeout(unlock, SCROLL_LOCK_MS);
+    settleTimer = setTimeout(unlock, SCROLL_START_GRACE_MS);
+    maxTimer = setTimeout(unlock, SCROLL_LOCK_MAX_MS);
 
     const onScroll = () => {
-      if (!spyLockedRef.current) sync();
+      if (spyLockedRef.current) {
+        clearTimeout(settleTimer);
+        settleTimer = setTimeout(unlock, SCROLL_SETTLE_MS);
+      } else {
+        sync();
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("scrollend", unlock);
     return () => {
-      clearTimeout(timer);
+      clearTimeout(settleTimer);
+      clearTimeout(maxTimer);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("scrollend", unlock);
     };
   }, [pathname, hash]);
 
@@ -152,7 +166,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
           {/* Brand */}
           <Link
             to="/"
-            className="font-mono text-xl font-bold text-white tracking-wide hover:text-gray-300 transition-colors rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+            className="font-mono text-lg lg:text-xl whitespace-nowrap font-bold text-white tracking-wide hover:text-gray-300 transition-colors rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
             onClick={() => setMenuOpen(false)}
           >
             Alexander <span className="text-gray-300">Thomas</span> Sayson
@@ -171,7 +185,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
           {/* Desktop Navigation */}
           <nav
             ref={desktopNavRef}
-            className="hidden md:flex items-center space-x-8 font-medium relative"
+            className="hidden md:flex items-center md:space-x-3 lg:space-x-8 font-medium relative"
             aria-label="Main navigation"
           >
             {navLinks.map(({ label, to }) => {

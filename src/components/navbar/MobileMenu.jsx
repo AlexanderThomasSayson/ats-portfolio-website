@@ -53,7 +53,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
 
   const menuItems = [
     { label: "Home", to: "/#home" },
-    { label: "Experience", to: "/#about" },
+    { label: "About", to: "/#about" },
     { label: "Resume", to: "/#resume" },
     { label: "Works", to: "/#works", hasDropdown: true },
     { label: "Contact", to: "/contact" },
