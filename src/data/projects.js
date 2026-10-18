@@ -1,5 +1,34 @@
 export const projects = [
   {
+    id: "circlek",
+    slug: "circlek",
+    title: "Circle K LIFT Platform",
+    shortDescription:
+      "Maintaining and shipping new features for Circle K's legacy LIFT Platform, focusing on its cashier-facing and customer-facing screens.",
+    image: "/images/mockups/CK.webp",
+    mockup: "/images/mockups/CK.webp",
+    heroMockup: "/images/mockups/CK.webp",
+    logo: "/images/ck-logo.png",
+    technologies: ["Java", "AWS"],
+    problem:
+      "The LIFT Platform is a legacy system that cashiers and customers rely on every day at Circle K. Because it sits at the point of sale, the screens people use must stay dependable while the business keeps asking for new capabilities, which makes every change to a long-lived codebase a careful one.",
+    solution:
+      "I help maintain and ship new features for the LIFT Platform, specifically its cashier-facing and customer-facing screens. My work covers fixing issues in existing flows and delivering new functionality without disrupting the people who use the platform in stores.",
+    challenges: [
+      "Working within a legacy codebase while delivering new features safely",
+      "Keeping cashier-facing and customer-facing screens consistent and dependable",
+      "Shipping changes without disrupting day-to-day store operations",
+    ],
+    outcomes: [
+      "Actively maintaining the cashier-facing and customer-facing screens of the LIFT Platform",
+      "Continuously shipping new features to the platform",
+    ],
+    screenshots: [],
+    role: "Junior Java Cloud Engineer",
+    duration: "Ongoing",
+    team: "Product team",
+  },
+  {
     id: "yamaha",
     slug: "yamaha",
     title: "Dealer Network Development",

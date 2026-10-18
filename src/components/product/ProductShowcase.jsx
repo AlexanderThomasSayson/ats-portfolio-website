@@ -70,6 +70,15 @@ export const ProductShowcase = () => {
 
   const getDescription = (id) => {
     switch (id) {
+      case "circlek":
+        return (
+          <>
+            I help maintain and ship new features for the legacy{" "}
+            <span className="text-white font-semibold">LIFT Platform</span> at{" "}
+            <span className="text-red-500 font-semibold">Circle K</span>,
+            specifically its cashier-facing and customer-facing screens.
+          </>
+        );
       case "yamaha":
         return (
           <>
